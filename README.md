@@ -36,7 +36,6 @@ To do:
     - [X] ~~*Calculate the energies*~~ [2024-01-29]
     - [X] ~~*Display the energies on a bar next to the pendulum*~~ [2024-01-30]
 
-
 - [ ] Export the graph to other format
     - [ ] Excel
     - [ ] PDF

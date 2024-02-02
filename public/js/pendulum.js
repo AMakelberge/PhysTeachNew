@@ -189,15 +189,10 @@ export function setPendulumPosition(canvas, event, th1, th2, om1, om2){
     return [th1,th2, om1, om2];
 }
 
-function getKineticEnergy(th1, th2){
+function getKineticEnergy(om1, om2){
     const { g, m1, m2, l1, l2 } = getParams();
 
-    let dx1 = l1 * Math.cos(th1);
-    let dx2 = dx1 + l2 * Math.cos(th2);
-    let dy1 = l1 * Math.sin(th1);
-    let dy2 = dy1 + l2 * Math.sin(th2);
-
-    let KE = 0.5 * m1 * Math.hypot(dx1, dx2) + 0.5 * m2 * Math.hypot(dx2, dy2);
+    let KE = 0.5 * m1 * om1*om1*l1*l1 + 0.5 * m2 * om2*om2*l2*l2;
 
     return KE;
 }
@@ -205,64 +200,66 @@ function getKineticEnergy(th1, th2){
 function getPotentialEnergy(th1, th2){
     const { g, m1, m2, l1, l2 } = getParams();
 
-    let M = m1 + m2;
+    const h1 = l1 + l2 - l1 * Math.sin(th1);
+    const h2 = h1 - l2 * Math.sin(th2);
 
-    let PE = - M * g * l1 * Math.cos(th1) - m2 * g * l2 * Math.cos(th2);
+    const PE = m1 * g * h1 + m2 * g * h2;
 
     return PE;
 }
 
-export function drawEnergyBar(ctxEnergy, widthEnergy, heightEnergy, th1, th2){
+export function drawEnergyBar(ctxEnergy, widthEnergy, heightEnergy, th1, th2, om1, om2){
     const { g, m1, m2, l1, l2 } = getParams();
     ctxEnergy.clearRect(0,0, widthEnergy, heightEnergy);
 
-    let paddedHeightEnergy = heightEnergy - 2 * Ypadding;
+    const paddedHeightEnergy = heightEnergy - 2 * Ypadding;
+    const paddedWidthEnergy = widthEnergy - 2 * Xpadding;
 
-    let maxKE = getKineticEnergy(0, 0, m1, m2, l1, l2);
-    let maxPE = Math.abs(getPotentialEnergy(Math.PI, Math.PI, m1, m2, l1, l2));
+    const KE = getKineticEnergy(om1, om2);
+    const PE = Math.abs(getPotentialEnergy(th1, th2, m1, m2, l1, l2));
 
-    let KE = getKineticEnergy(th1, th2, m1, m2, l1, l2);
-    let PE = Math.abs(getPotentialEnergy(th1, th2, m1, m2, l1, l2));
+    const maxE = KE + PE;
+
+    console.log(KE, PE);
 
 
     // Draw the boxes to display energy
     ctxEnergy.fillStyle = "red";
-    ctxEnergy.fillRect(Xpadding, paddedHeightEnergy*KE/maxKE + Ypadding, widthEnergy/2 - Xpadding, paddedHeightEnergy*(1-KE/maxKE));
+    ctxEnergy.fillRect(Xpadding, paddedHeightEnergy*(1-KE/maxE) + Ypadding, paddedWidthEnergy, paddedHeightEnergy*KE/maxE);
     ctxEnergy.fillStyle = "blue";
-    // Needs to be fixed not working atm
-    ctxEnergy.fillRect(widthEnergy/2, paddedHeightEnergy*PE/maxPE + Ypadding, widthEnergy/2 - Xpadding, paddedHeightEnergy*(1-PE/maxPE));
+    ctxEnergy.fillRect(Xpadding, Ypadding, paddedWidthEnergy, paddedHeightEnergy*PE/maxE);
 
-    // Draw surrounding frame
-    ctxEnergy.strokeRect(Xpadding, Ypadding, widthEnergy/2 - Xpadding, paddedHeightEnergy);
-    ctxEnergy.strokeRect(widthEnergy/2, Ypadding, widthEnergy/2-Xpadding, paddedHeightEnergy);
+//     // Draw surrounding frame
+//     ctxEnergy.strokeRect(Xpadding, Ypadding, widthEnergy/2 - Xpadding, paddedHeightEnergy);
+//     ctxEnergy.strokeRect(widthEnergy/2, Ypadding, widthEnergy/2-Xpadding, paddedHeightEnergy);
 
-    // Draw labels on each bar
-    ctxEnergy.fillStyle = "black";
-    ctxEnergy.fillText("KE (J)", Xpadding/2, Xpadding);
-    ctxEnergy.fillText("PE (J)", widthEnergy - Xpadding/2, Xpadding);
+//     // Draw labels on each bar
+//     ctxEnergy.fillStyle = "black";
+//     ctxEnergy.fillText("KE (J)", Xpadding/2, Xpadding);
+//     ctxEnergy.fillText("PE (J)", widthEnergy - Xpadding/2, Xpadding);
 
-    for (let i = 0; i <= numYPoints; i++) {
+//     for (let i = 0; i <= numYPoints; i++) {
 
-        // Get the position and value for labels
-        let yPos = i*paddedHeightEnergy/numYPoints;
-        let KElabel = +((numYPoints-i)*maxKE/numYPoints).toPrecision(2);
-        let PElabel = -((numYPoints-i)*maxPE/(numYPoints*100)).toPrecision(2);
+//         // Get the position and value for labels
+//         let yPos = i*paddedHeightEnergy/numYPoints;
+//         let KElabel = +((numYPoints-i)*maxKE/numYPoints).toPrecision(2);
+//         let PElabel = -((numYPoints-i)*maxPE/(numYPoints*100)).toPrecision(2);
 
-        // Draw tick marks on both sides
-        ctxEnergy.beginPath();
-        ctxEnergy.moveTo(Xpadding, yPos + Ypadding);
-        ctxEnergy.lineTo(Xpadding-5, yPos + Ypadding);
-        ctxEnergy.moveTo(widthEnergy-Xpadding, yPos + Ypadding);
-        ctxEnergy.lineTo(widthEnergy-Xpadding + 5, yPos + Ypadding);
-        ctxEnergy.stroke();
+//         // Draw tick marks on both sides
+//         ctxEnergy.beginPath();
+//         ctxEnergy.moveTo(Xpadding, yPos + Ypadding);
+//         ctxEnergy.lineTo(Xpadding-5, yPos + Ypadding);
+//         ctxEnergy.moveTo(widthEnergy-Xpadding, yPos + Ypadding);
+//         ctxEnergy.lineTo(widthEnergy-Xpadding + 5, yPos + Ypadding);
+//         ctxEnergy.stroke();
 
-        // Draw data points next to tick marks
-        ctxEnergy.textAlign = "right";
-        ctxEnergy.fillText(KElabel, Xpadding-10, yPos + Ypadding +5);
-        ctxEnergy.textAlign = "left";
-        ctxEnergy.fillText(PElabel,widthEnergy-Xpadding+10, yPos + Ypadding +5);
-        ctxEnergy.textAlign = "center";
+//         // Draw data points next to tick marks
+//         ctxEnergy.textAlign = "right";
+//         ctxEnergy.fillText(KElabel, Xpadding-10, yPos + Ypadding +5);
+//         ctxEnergy.textAlign = "left";
+//         ctxEnergy.fillText(PElabel,widthEnergy-Xpadding+10, yPos + Ypadding +5);
+//         ctxEnergy.textAlign = "center";
 
-    }
+//     }
 
 }

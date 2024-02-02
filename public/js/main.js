@@ -34,8 +34,6 @@ function start(){
 
     presetSelect.addEventListener("change", function(e){
         const preset = JSON.parse(e.target.value);
-        console.log(preset);
-        console.log(preset.th1);
         setAngleParams(preset.th1, preset.th2, preset.om1, preset.om2);
     });
 
@@ -165,8 +163,6 @@ function start(){
 
                 [th1, th2, om1, om2] = updatePendulum(integrationSelect.value, h, th1, th2, om1, om2);
 
-                console.log(th1, th2, om1, om2);
-
                 totalFrames++;
 
                 updateHistories(th1, th2, om1, om2, totalFrames);
@@ -175,7 +171,7 @@ function start(){
 
             }
 
-            drawEnergyBar(ctxEnergy, widthEnergy, heightEnergy, th1, th2);
+            drawEnergyBar(ctxEnergy, widthEnergy, heightEnergy, th1, th2, om1, om2);
 
             drawGraph(ctxGraph, xGraph, yGraph, widthGraph, heightGraph, pauseCheck);
 
