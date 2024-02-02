@@ -33,12 +33,4 @@ router.post('/addPreset', function (req, res){
     })();
 });
 
-// // Handles post requests for selecting which preset to use
-// router.post('/selectPreset', function (req, res){
-//     (async function() {
-//         let preset = JSON.parse(req.body.pres);
-//         res.json({ th1: preset.th1, th2: preset.th2, om1: preset.om1, om2: preset.om2 });
-//     })();
-// });
-
 export default router;

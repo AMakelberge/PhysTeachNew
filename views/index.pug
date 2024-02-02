@@ -57,12 +57,11 @@ div(style='float:right')
             each preset in presets 
                 li #{preset.name}
 
-        form(id="selectPreset" action="/selectPreset", method="post")
-            label(for="pres") Select a Preset
-            select(name="pres" id="pres")
-                each preset in presets 
-                    option(value=preset) #{preset.name}
-            button(type="submit") Submit
+        label(for="presetSelect") Select a Preset
+        select(name="presetSelect" id="presetSelect")
+            each preset in presets 
+                option(value=preset) #{preset.name}
+
             
         h2 y-variable
         select#yGraphSelect
@@ -90,5 +89,4 @@ div(style='float:right')
 canvas#canvasGraph(width='800' height='500' style='float:center')
 script(type='module' src='/js/graph.js')
 script(type='module' src='/js/pendulum.js')
-script(type='module' src='/js/client.js')
 script(type='module' src='/js/main.js')

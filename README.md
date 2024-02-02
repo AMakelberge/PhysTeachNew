@@ -21,12 +21,12 @@ To do:
 
 - [X] ~~*Adding the path that the bottom pendulum has taken*~~ [2024-01-30]
 
-- [ ] Add interesting presets
-    - [ ] Use a database for this
-    - [ ] Simple osscilation (like single pendulum)
-    - [ ] Alternating osccilation
-    - [ ] Chaotic motion without enough energy to flip over
-    - [ ] Chaotic motion with enough energy to flip over
+- [X] ~~*Add interesting presets*~~ [2024-02-02]
+    - [X] ~~*Use a database for this*~~ [2024-02-02]
+    - [X] ~~*Simple osscilation (like single pendulum)*~~ [2024-02-02]
+    - [X] ~~*Alternating osccilation*~~ [2024-02-02]
+    - [X] ~~*Chaotic motion without enough energy to flip over*~~ [2024-02-02]
+    - [X] ~~*Chaotic motion with enough energy to flip over*~~ [2024-02-02]
 
 - [ ] Add toggle for damping
 
