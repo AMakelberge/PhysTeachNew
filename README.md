@@ -40,7 +40,7 @@ To do:
     - [ ] Excel
     - [ ] PDF
 
-- [ ] Fix the energy bars so energy is actually correct
+- [X] ~~*Fix the energy bars so energy is actually correct*~~ [2024-02-02]
 
 - [ ] Make the page look nice with proper css
 
