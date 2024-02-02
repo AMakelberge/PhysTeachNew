@@ -26,15 +26,17 @@ function start(){
     const yGraphSelect = document.getElementById('yGraphSelect');
     const xGraphSelect = document.getElementById('xGraphSelect');
     const integrationSelect = document.getElementById('integrationSelect');
-    const presetSelect = document.getElementById('selectPreset');
+    const presetSelect = document.getElementById('presetSelect');
 
     //Run reset scrips when these buttons are clicked on the html
     restartButton.addEventListener('click', RestartGraph);
     resetButton.addEventListener('click', RestartVariablesAndGraph);
 
-    presetSelect.addEventListener('submit', function(e){
-        console.log('big')
-        console.log(e.value);
+    presetSelect.addEventListener("change", function(e){
+        const preset = JSON.parse(e.target.value);
+        console.log(preset);
+        console.log(preset.th1);
+        setAngleParams(preset.th1, preset.th2, preset.om1, preset.om2);
     });
 
     //Initialise starting parameters
@@ -134,6 +136,13 @@ function start(){
         heightPendulum = canvasPendulum.height;
     }
 
+    function setAngleParams(newTh1, newTh2, newOm1, newOm2){
+        th1 = parseFloat(newTh1) * (Math.PI / 180);
+        th2 = parseFloat(newTh2) * (Math.PI / 180);
+        om1 = parseFloat(newOm1);
+        om2 = parseFloat(newOm2);
+    };
+
     const timePerFrame = 1000/desiredFPS;
     let totalFrames = 0;
     let previousTime = 0;
@@ -155,6 +164,8 @@ function start(){
             if (pauseCheck.checked == false){
 
                 [th1, th2, om1, om2] = updatePendulum(integrationSelect.value, h, th1, th2, om1, om2);
+
+                console.log(th1, th2, om1, om2);
 
                 totalFrames++;
 
@@ -188,11 +199,4 @@ export function setParams({ newG, newM1, newM2, newL1, newL2 }) {
     m2 = newM2;
     l1 = newL1;
     l2 = newL2;
-};
-
-export function setAngleParams({ newTh1, newTh2, newOm1, newOm2 }){
-    th1 = newTh1;
-    th2 = newTh2;
-    om1 = newOm1;
-    om2 = newOm2;
 };
