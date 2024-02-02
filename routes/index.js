@@ -1,9 +1,24 @@
 
 import express from 'express';
 import { MongoClient } from 'mongodb';
+import readline from 'readline';
 
+// Get the password of the mongoDB database
+let password;
+const read = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+read.question("Password: ", function(answer) {
+    password = answer;
+    read.close();
+})
+
+// Set up router
 const router = express.Router();
-const client = new MongoClient('mongodb+srv://dbo:Password@physteach.dl3xqy3.mongodb.net/?retryWrites=true&w=majority')
+
+// Set up client with mongoDB database
+const client = new MongoClient(`mongodb+srv://dbo:${password}@physteach.dl3xqy3.mongodb.net/?retryWrites=true&w=majority`)
 
 // Gets the presets from the database
 async function GetPresets() {
@@ -33,4 +48,5 @@ router.post('/addPreset', function (req, res){
     })();
 });
 
+// Export router to app.js
 export default router;

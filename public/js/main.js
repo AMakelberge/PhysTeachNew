@@ -58,6 +58,7 @@ function start(){
     let widthPendulum = canvasPendulum.width;
     let heightPendulum = canvasPendulum.height;
 
+    // Changes position of pendulum when you click on it
     canvasPendulum.addEventListener("click", function(event){
         [th1, th2, om1, om2] = setPendulumPosition(canvasPendulum, event, om1, om2);
         maxLabel = getMaxEnergy(th1, th2, om1, om2);
@@ -91,16 +92,6 @@ function start(){
     let widthEnergy = canvasEnergy.width;
     let heightEnergy = canvasEnergy.height;
 
-    function resizeCanvas(canvas) {
-        const parent = canvas.parentElement;
-        const styles = window.getComputedStyle(parent);
-        const width = parseInt(styles.width);
-        const height = parseInt(styles.height);
-
-        canvas.width = width;
-        canvas.height = height; 
-    }
-
     //Reset and restart functions
     function RestartGraph(){
         th1 = 90 * (Math.PI / 180);
@@ -133,6 +124,7 @@ function start(){
         RestartGraph()
         }
 
+    // Updates variables to sliders on the page
     function updateVariables(){
         g = gravSlider.value;
         m1 = m1Slider.value;
@@ -148,6 +140,7 @@ function start(){
         heightPendulum = canvasPendulum.height;
     }
 
+    // Updates angles
     function setAngleParams(newTh1, newTh2, newOm1, newOm2){
         th1 = parseFloat(newTh1) * (Math.PI / 180);
         th2 = parseFloat(newTh2) * (Math.PI / 180);
@@ -155,6 +148,7 @@ function start(){
         om2 = parseFloat(newOm2);
     };
 
+    // Variables for running
     const timePerFrame = 1000/desiredFPS;
     let totalFrames = 0;
     let previousTime = 0;
@@ -209,6 +203,7 @@ export function getParams() {
     return { g, m1, m2, l1, l2 };
 };
 
+// Set the parameters within main.js
 export function setParams({ newG, newM1, newM2, newL1, newL2 }) {
     g = newG;
     m1 = newM1;

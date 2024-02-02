@@ -213,7 +213,7 @@ export function drawGraph(ctxGraph, xGraph, yGraph, widthGraph, heightGraph, pau
 
     }
 
-    
+    // Draws circle around closest point clicked on and shows the values of the point
     if (drawPoint && pauseCheck.checked == true) {
         let closestCoords = closestPoint.point;
         ctxGraph.beginPath();

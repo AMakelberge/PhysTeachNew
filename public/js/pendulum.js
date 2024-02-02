@@ -151,6 +151,7 @@ export function updatePendulum(method, h, th1, th2, om1, om2){
     return [th1, th2, om1, om2];
 }
 
+// Returns the points of intersection of 2 circles to find middle point
 function findCircleIntersections(x1,y1,r1, x2,y2,r2) {
 
     const d = Math.hypot(x2-x1, y2-y1);
@@ -169,6 +170,8 @@ function findCircleIntersections(x1,y1,r1, x2,y2,r2) {
     const x4 = x3 + h * Math.cos(theta + Math.PI / 2);
     const y4 = y3 + h * Math.sin(theta + Math.PI / 2);
   
+    // Arbitrarily returns to positive value and doesn't calculate other intersection
+    // As it is not needed
     return [x4, y4];
   }
 
@@ -184,6 +187,7 @@ export function setPendulumPosition(canvas, event, th1, th2, om1, om2){
 
     const point = findCircleIntersections(origX, origY, l1, xClick, yClick, l2);
 
+    // Calculates th1 and th2 that results in these points being chosen
     if (point != false){
         th1 = Math.atan2(point[1]-origY, point[0]-origX);
         th2 = Math.atan2(yClick-point[1], xClick-point[0]);
@@ -194,6 +198,7 @@ export function setPendulumPosition(canvas, event, th1, th2, om1, om2){
     return [th1,th2, om1, om2];
 }
 
+// Returns sum of kinetic energies of both pendulums
 function getKineticEnergy(om1, om2){
     const { g, m1, m2, l1, l2 } = getParams();
 
@@ -202,6 +207,7 @@ function getKineticEnergy(om1, om2){
     return KE;
 }
 
+// Returns sum of potential energies of both pendulums
 function getPotentialEnergy(th1, th2){
     const { g, m1, m2, l1, l2 } = getParams();
 
@@ -213,10 +219,12 @@ function getPotentialEnergy(th1, th2){
     return PE;
 }
 
+// Returns the maximum energy for given parameters (updates everytime parameters change)
 export function getMaxEnergy(th1, th2, om1, om2){
     return getKineticEnergy(om1, om2) + getPotentialEnergy(th1, th2);
 }
 
+// Draws the energy bar to the screen
 export function drawEnergyBar(ctxEnergy, widthEnergy, heightEnergy, th1, th2, om1, om2, maxLabel){
     const { g, m1, m2, l1, l2 } = getParams();
     ctxEnergy.clearRect(0,0, widthEnergy, heightEnergy);
