@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Double Pendulum Problem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Double pendulum</h1>
+    <canvas id="canvasPendulum" width="1000" height="1000" style="float:left"></canvas>
+
+    <canvas id ="canvasEnergy" width="200" height="1000" style="float:center"></canvas>
+
+<div style="float:right">
+    <h2>Gravity</h2>
+    <input type='range' min='0' max='30' step = '0.01' value='9.81' id='gravSlider' oninput='gravAmount.value=gravSlider.value'></input>
+    <input type='text' min='0' max='30' step = '0.01'  value='9.81' id='gravAmount' oninput='gravSlider.value=gravAmount.value'></input>
+
+    <h2>m1</h2>
+    <input type='range' min='2' max='20' step = '0.01' value='5' id='m1Slider' oninput='m1Amount.value=m1Slider.value'></input>
+    <input type='text' min='2' max='20' step = '0.01'  value='5' id='m1Amount' oninput='m1Slider.value=m1Amount.value'></input>
+
+    <h2>m2</h2>
+    <input type='range' min='2' max='20' step = '0.01' value='5' id='m2Slider' oninput='m2Amount.value=m2Slider.value'></input>
+    <input type='text' min='2' max='20' step = '0.01'  value='5' id='m2Amount' oninput='m2Slider.value=m2Amount.value'></input>
+
+    <h2>l1</h2>
+    <input type='range' min='5' max='500' step = '0.01' value='100' id='l1Slider' oninput='l1Amount.value=l1Slider.value'></input>
+    <input type='text' min='5' max='500' step = '0.01'  value='100' id='l1Amount' oninput='l1Slider.value=l1Amount.value'></input>
+
+    <h2>l2</h2>
+    <input type='range' min='5' max='500' step = '0.01' value='100' id='l2Slider' oninput='l2Amount.value=l2Slider.value'></input>
+    <input type='text' min='5' max='500' step = '0.01'  value='100' id='l2Amount' oninput='l2Slider.value=l2Amount.value'></input>
+
+    <h2>h</h2>
+    <input type='range' min='0.01' max='1' step = '0.01' value='0.25' id='hSlider' oninput='hAmount.value=hSlider.value'></input>
+    <input type='text' min='0.01' max='1' step = '0.01'  value='0.25' id='hAmount' oninput='hSlider.value=hAmount.value'></input>
+
+    <h2>Presets</h2>
+    <select id="presetsSelect">
+        <option value="simOsc">Simple Oscillation</option>
+        <option value="altOsc">Alternating Oscillation</option>
+        <option value="lessEng">Chaotic without flipping</option>
+        <option value="moreEng">Chaotic with flipping</option>
+    </select>
+
+    <h2>y-variable</h2>
+    <select id="yGraphSelect">
+        <option value="graphHistoryTh1">Th1</option>
+        <option value="graphHistoryTh2">Th2</option>
+        <option value="graphHistoryOm1">Om1</option>
+        <option value="graphHistoryOm2">Om2</option>
+    </select>
+
+    <h2>x-variable</h2>
+    <select id="xGraphSelect">
+        <option value="graphHistoryTh2">Th2</option>
+        <option value="graphHistoryTh1">Th1</option>
+        <option value="graphHistoryOm1">Om1</option>
+        <option value="graphHistoryOm2">Om2</option>
+        <option value="graphHistoryTime">Time</option>
+    </select>
+
+    <h2>Integration method</h2>
+    <select id="integrationSelect">
+        <option value="RK4">RK4</option>
+        <option value="Euler">Euler</option>
+    </select>
+
+    <h2>Pause</h2>
+    <input type="checkbox" id="pauseCheck"></input>
+
+    <h2>Restart Graph</h2>
+    <input type="button" id="restartButton"></input>
+
+    <h2>Restart Variables and Graph</h2>
+    <input type="button" id="resetButton"></input>
+</div>
+
+<canvas id="canvasGraph" width="800" height="500" style="float:center"></canvas>
+
+<script type="module" src="src/index.js"></script>
+</body>
+
+
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "physteach",
+  "version": "1.0.0",
+  "description": "Physics Teach Aid",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Makelberge",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0",
+    "pug": "^3.0.2"
+  },
+  "keywords": []
+}
