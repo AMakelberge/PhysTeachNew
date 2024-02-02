@@ -164,7 +164,7 @@ export function drawGraph(ctxGraph, xGraph, yGraph, widthGraph, heightGraph, pau
 
             ctxGraph.moveTo(widthGraph/2 - prevX*xScale, heightGraph / 2 - prevY * yScale);
             ctxGraph.lineTo(widthGraph/2 - currX*xScale, heightGraph / 2 - currY * yScale);
-            ctxGraph.arc(widthGraph/2 - currX*xScale, heightGraph / 2 - currY * yScale, 2, 0, 2* Math.PI);
+            ctxGraph.arc(widthGraph/2 - currX*xScale, heightGraph / 2 - currY * yScale, 1, 0, 2* Math.PI);
 
             //Check if points on opposite side of graph and makes line invisible
             if ((Math.abs(prevY - currY) > Math.PI) || (Math.abs(prevX - currX) > Math.PI)){

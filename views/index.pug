@@ -4,11 +4,17 @@ head
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title Double Pendulum Problem
     link(rel='stylesheet' href='/css/style.css')
-h1 Double pendulum
-canvas#canvasPendulum(width='1000' height='1000')
-canvas#canvasEnergy(width='200' height='1000')
-div
-    .scrollable
+
+.grid-container 
+    .grid-header
+        h1 Double pendulum
+
+    canvas.grid-pendulum#canvasPendulum(width='900px' height='900px')
+
+
+    canvas.grid-energy#canvasEnergy(width='250px' height='500px')
+
+    .grid-control
         h2 Gravity
         input#gravSlider(type='range' min='0' max='30' step='0.01' value='9.81' oninput='gravAmount.value=gravSlider.value')
         input#gravAmount(type='text' min='0' max='30' step='0.01' value='9.81' oninput='gravSlider.value=gravAmount.value')
@@ -55,7 +61,7 @@ div
                 button(type="submit") Submit
 
         .presetSelect
-            label(for="presetSelect") Select a Preset
+            h2 Select a Preset
             select(name="presetSelect" id="presetSelect")
                 each preset in presets 
                     option(value=preset) #{preset.name}
@@ -84,7 +90,11 @@ div
         input#restartButton(type='button')
         h2 Restart Variables and Graph
         input#resetButton(type='button')
-canvas#canvasGraph(width='800' height='500')
+
+
+    canvas.grid-graph#canvasGraph(width='600px' height='350px')
+
+
 script(type='module' src='/js/graph.js')
 script(type='module' src='/js/pendulum.js')
 script(type='module' src='/js/main.js')

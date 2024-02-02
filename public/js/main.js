@@ -1,7 +1,7 @@
 
 // Import functions from other files
 import {drawGraph, resetHistories, updateHistories, drawClosestPoint} from "./graph.js";
-import {drawPendulum, updatePendulum, setPendulumPosition, drawEnergyBar, updatePosHistories, getMaxEnergy} from "./pendulum.js";
+import {drawPendulum, updatePendulum, setPendulumPosition, drawEnergyBar, updatePosHistories, getMaxEnergy, resetPendHistories} from "./pendulum.js";
 
 // Declare variables for exporting
 let g, m1, m2, l1, l2;
@@ -65,8 +65,8 @@ function start(){
     })
 
     //Canvas setup for graph
-    const canvasGraph = document.querySelector('#canvasGraph');
-    const ctxGraph = canvasGraph.getContext('2d');
+    let canvasGraph = document.querySelector('#canvasGraph');
+    let ctxGraph = canvasGraph.getContext('2d');
     ctxGraph.font = "16px Arial";
     ctxGraph.textAlign = "center";
     let widthGraph = canvasGraph.width;
@@ -84,12 +84,22 @@ function start(){
     let xGraph = xGraphSelect.value;
 
     // Canvas setup for energy bar
-    const canvasEnergy = document.querySelector('#canvasEnergy');
-    const ctxEnergy = canvasEnergy.getContext('2d');
+    let canvasEnergy = document.querySelector('#canvasEnergy');
+    let ctxEnergy = canvasEnergy.getContext('2d');
     ctxEnergy.font = "16px Arial";
     ctxEnergy.textAlign = "center";
     let widthEnergy = canvasEnergy.width;
     let heightEnergy = canvasEnergy.height;
+
+    function resizeCanvas(canvas) {
+        const parent = canvas.parentElement;
+        const styles = window.getComputedStyle(parent);
+        const width = parseInt(styles.width);
+        const height = parseInt(styles.height);
+
+        canvas.width = width;
+        canvas.height = height; 
+    }
 
     //Reset and restart functions
     function RestartGraph(){
@@ -98,6 +108,7 @@ function start(){
         om1 = 0;
         om2 = 0;
         resetHistories()
+        resetPendHistories()
         }
 
     function RestartVariablesAndGraph(){
@@ -185,6 +196,7 @@ function start(){
 
 };
 
+// Only start running the file when teh DOM has finished loading.
 document.addEventListener('DOMContentLoaded', start);
 
 // Get and set pendulum parameters

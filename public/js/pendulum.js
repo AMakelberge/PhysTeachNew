@@ -15,6 +15,11 @@ const numYPoints = 5;
 let xHistories = [];
 let yHistories = [];
 
+export function resetPendHistories(){
+    xHistories = [];
+    yHistories = [];
+}
+
 // Update histories of positions
 export function updatePosHistories(x,y){
     xHistories.push(x);
