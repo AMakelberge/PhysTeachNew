@@ -5,9 +5,9 @@ head
     title Double Pendulum Problem
     link(rel='stylesheet' href='/css/style.css')
 h1 Double pendulum
-canvas#canvasPendulum(width='1000' height='1000' style='float:left')
-canvas#canvasEnergy(width='200' height='1000' style='float:center')
-div(style='float:right')
+canvas#canvasPendulum(width='1000' height='1000')
+canvas#canvasEnergy(width='200' height='1000')
+div
     .scrollable
         h2 Gravity
         input#gravSlider(type='range' min='0' max='30' step='0.01' value='9.81' oninput='gravAmount.value=gravSlider.value')
@@ -32,35 +32,33 @@ div(style='float:right')
             h2 Add a preset
             form(action="/addPreset", method="post")
 
-                .form-group
+                .formGroup
                     label(for="name") Name: 
                     input(type="text", id="name", placeholder="name", name="name")
 
-                .form-group
+                .formGroup
                     label(for="th1") th1: 
                     input(type="text", id="th1", placeholder="th1", name="th1")
 
-                .form-group
+                .formGroup
                     label(for="th2") th2: 
                     input(type="text", id="th2", placeholder="th2", name="th2")
 
-                .form-group
+                .formGroup
                     label(for="om1") om1: 
                     input(type="text", id="om1", placeholder="om1", name="om1")
 
-                .form-group
+                .formGroup
                     label(for="om2") om2: 
                     input(type="text", id="om2", placeholder="om2", name="om2")
 
                 button(type="submit") Submit
-        ul  
-            each preset in presets 
-                li #{preset.name}
 
-        label(for="presetSelect") Select a Preset
-        select(name="presetSelect" id="presetSelect")
-            each preset in presets 
-                option(value=preset) #{preset.name}
+        .presetSelect
+            label(for="presetSelect") Select a Preset
+            select(name="presetSelect" id="presetSelect")
+                each preset in presets 
+                    option(value=preset) #{preset.name}
 
             
         h2 y-variable
@@ -86,7 +84,7 @@ div(style='float:right')
         input#restartButton(type='button')
         h2 Restart Variables and Graph
         input#resetButton(type='button')
-canvas#canvasGraph(width='800' height='500' style='float:center')
+canvas#canvasGraph(width='800' height='500')
 script(type='module' src='/js/graph.js')
 script(type='module' src='/js/pendulum.js')
 script(type='module' src='/js/main.js')

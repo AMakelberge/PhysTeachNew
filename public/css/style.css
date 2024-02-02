@@ -1,8 +1,12 @@
-.form-group{
+.formGroup{
     margin-bottom: 10px;
 }
 .scrollable {
     height: 500px;
     overflow: auto;
     border: 1px solid;
+    float: right;
+}
+.presetSelect {
+    display: block;
 }

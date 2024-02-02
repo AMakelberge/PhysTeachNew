@@ -41,6 +41,10 @@ To do:
     - [ ] Excel
     - [ ] PDF
 
+- [ ] Fix the energy bars so energy is actually correct
+
+- [ ] Make the page look nice with proper css
+
 - [X] ~~*Add ability to click and drag the pendulum and move it around*~~ [2024-01-29]
     - https://www.youtube.com/watch?v=7PYvx8u_9Sk 
     - [X] ~~*Fix the angles*~~ [2024-01-29]
