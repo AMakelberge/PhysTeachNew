@@ -200,15 +200,19 @@ function getKineticEnergy(om1, om2){
 function getPotentialEnergy(th1, th2){
     const { g, m1, m2, l1, l2 } = getParams();
 
-    const h1 = l1 + l2 - l1 * Math.sin(th1);
-    const h2 = h1 - l2 * Math.sin(th2);
+    const h1 = l1 + l2 - l1 * Math.cos(th1);
+    const h2 = h1 - l2 * Math.cos(th2);
 
     const PE = m1 * g * h1 + m2 * g * h2;
 
     return PE;
 }
 
-export function drawEnergyBar(ctxEnergy, widthEnergy, heightEnergy, th1, th2, om1, om2){
+export function getMaxEnergy(th1, th2, om1, om2){
+    return getKineticEnergy(om1, om2) + getPotentialEnergy(th1, th2);
+}
+
+export function drawEnergyBar(ctxEnergy, widthEnergy, heightEnergy, th1, th2, om1, om2, maxLabel){
     const { g, m1, m2, l1, l2 } = getParams();
     ctxEnergy.clearRect(0,0, widthEnergy, heightEnergy);
 
@@ -216,12 +220,9 @@ export function drawEnergyBar(ctxEnergy, widthEnergy, heightEnergy, th1, th2, om
     const paddedWidthEnergy = widthEnergy - 2 * Xpadding;
 
     const KE = getKineticEnergy(om1, om2);
-    const PE = Math.abs(getPotentialEnergy(th1, th2, m1, m2, l1, l2));
+    const PE = getPotentialEnergy(th1, th2);
 
     const maxE = KE + PE;
-
-    console.log(KE, PE);
-
 
     // Draw the boxes to display energy
     ctxEnergy.fillStyle = "red";
@@ -229,37 +230,32 @@ export function drawEnergyBar(ctxEnergy, widthEnergy, heightEnergy, th1, th2, om
     ctxEnergy.fillStyle = "blue";
     ctxEnergy.fillRect(Xpadding, Ypadding, paddedWidthEnergy, paddedHeightEnergy*PE/maxE);
 
-//     // Draw surrounding frame
-//     ctxEnergy.strokeRect(Xpadding, Ypadding, widthEnergy/2 - Xpadding, paddedHeightEnergy);
-//     ctxEnergy.strokeRect(widthEnergy/2, Ypadding, widthEnergy/2-Xpadding, paddedHeightEnergy);
+    // Draw surrounding frame
+    ctxEnergy.strokeRect(Xpadding, paddedHeightEnergy*(1-KE/maxE) + Ypadding, paddedWidthEnergy, paddedHeightEnergy*KE/maxE)
+    ctxEnergy.strokeRect(Xpadding, Ypadding, paddedWidthEnergy, paddedHeightEnergy*PE/maxE);
 
-//     // Draw labels on each bar
-//     ctxEnergy.fillStyle = "black";
-//     ctxEnergy.fillText("KE (J)", Xpadding/2, Xpadding);
-//     ctxEnergy.fillText("PE (J)", widthEnergy - Xpadding/2, Xpadding);
+    // Draw labels on each bar
+    ctxEnergy.fillStyle = "black";
+    ctxEnergy.fillText("KE (J)", Xpadding/2, Xpadding);
+    ctxEnergy.fillText("PE (J)", widthEnergy - Xpadding/2, Xpadding);
 
-//     for (let i = 0; i <= numYPoints; i++) {
+    for (let i = 0; i <= numYPoints; i++) {
 
-//         // Get the position and value for labels
-//         let yPos = i*paddedHeightEnergy/numYPoints;
-//         let KElabel = +((numYPoints-i)*maxKE/numYPoints).toPrecision(2);
-//         let PElabel = -((numYPoints-i)*maxPE/(numYPoints*100)).toPrecision(2);
+        // Get the position and value for labels
+        let yPos = i*paddedHeightEnergy/numYPoints;
+        let Elabel = +((numYPoints-i)*maxLabel/numYPoints).toPrecision(2);
 
-//         // Draw tick marks on both sides
-//         ctxEnergy.beginPath();
-//         ctxEnergy.moveTo(Xpadding, yPos + Ypadding);
-//         ctxEnergy.lineTo(Xpadding-5, yPos + Ypadding);
-//         ctxEnergy.moveTo(widthEnergy-Xpadding, yPos + Ypadding);
-//         ctxEnergy.lineTo(widthEnergy-Xpadding + 5, yPos + Ypadding);
-//         ctxEnergy.stroke();
+        // Draw tick marks on both sides
+        ctxEnergy.beginPath();
+        ctxEnergy.moveTo(Xpadding, yPos + Ypadding);
+        ctxEnergy.lineTo(Xpadding-5, yPos + Ypadding);
+        ctxEnergy.stroke();
 
-//         // Draw data points next to tick marks
-//         ctxEnergy.textAlign = "right";
-//         ctxEnergy.fillText(KElabel, Xpadding-10, yPos + Ypadding +5);
-//         ctxEnergy.textAlign = "left";
-//         ctxEnergy.fillText(PElabel,widthEnergy-Xpadding+10, yPos + Ypadding +5);
-//         ctxEnergy.textAlign = "center";
+        // Draw data points next to tick marks
+        ctxEnergy.textAlign = "right";
+        ctxEnergy.fillText(Elabel, Xpadding-10, yPos + Ypadding +5);
+        ctxEnergy.textAlign = "center";
 
-//     }
+    }
 
 }

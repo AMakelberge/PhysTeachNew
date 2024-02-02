@@ -1,7 +1,7 @@
 
 // Import functions from other files
 import {drawGraph, resetHistories, updateHistories, drawClosestPoint} from "./graph.js";
-import {drawPendulum, updatePendulum, setPendulumPosition, drawEnergyBar, updatePosHistories} from "./pendulum.js";
+import {drawPendulum, updatePendulum, setPendulumPosition, drawEnergyBar, updatePosHistories, getMaxEnergy} from "./pendulum.js";
 
 // Declare variables for exporting
 let g, m1, m2, l1, l2;
@@ -35,19 +35,21 @@ function start(){
     presetSelect.addEventListener("change", function(e){
         const preset = JSON.parse(e.target.value);
         setAngleParams(preset.th1, preset.th2, preset.om1, preset.om2);
+        maxLabel = getMaxEnergy(th1, th2, om1, om2);
     });
 
     //Initialise starting parameters
-    g = gravSlider.value;
-    m1 = m1Slider.value;
-    m2 = m2Slider.value;
-    l1 = l1Slider.value;
-    l2 = l2Slider.value;
-    let h = hSlider.value;
+    g = parseFloat(gravSlider.value);
+    m1 = parseFloat(m1Slider.value);
+    m2 = parseFloat(m2Slider.value);
+    l1 = parseFloat(l1Slider.value);
+    l2 = parseFloat(l2Slider.value);
+    let h = parseFloat(hSlider.value);
     let th1 = 90 * (Math.PI / 180);
     let th2 = 30 * (Math.PI / 180);
     let om1 = 0;
     let om2 = 0;
+    let maxLabel = getMaxEnergy(th1, th2, om1, om2);
 
     //Canvas setup for pendulum
     const desiredFPS = 60;
@@ -58,6 +60,7 @@ function start(){
 
     canvasPendulum.addEventListener("click", function(event){
         [th1, th2, om1, om2] = setPendulumPosition(canvasPendulum, event, om1, om2);
+        maxLabel = getMaxEnergy(th1, th2, om1, om2);
 
     })
 
@@ -171,7 +174,7 @@ function start(){
 
             }
 
-            drawEnergyBar(ctxEnergy, widthEnergy, heightEnergy, th1, th2, om1, om2);
+            drawEnergyBar(ctxEnergy, widthEnergy, heightEnergy, th1, th2, om1, om2, maxLabel);
 
             drawGraph(ctxGraph, xGraph, yGraph, widthGraph, heightGraph, pauseCheck);
 
@@ -186,6 +189,11 @@ document.addEventListener('DOMContentLoaded', start);
 
 // Get and set pendulum parameters
 export function getParams() {
+    g = parseFloat(g);
+    m1 = parseFloat(m1);
+    m2 = parseFloat(m2);
+    l1 = parseFloat(l1);
+    l2 = parseFloat(l2);
     return { g, m1, m2, l1, l2 };
 };
 
