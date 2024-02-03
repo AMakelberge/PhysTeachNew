@@ -3,22 +3,37 @@ import express from 'express';
 import { MongoClient } from 'mongodb';
 import readline from 'readline';
 
-// Get the password of the mongoDB database
-let password;
+// Interface for reading password
 const read = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
-read.question("Password: ", function(answer) {
-    password = answer;
-    read.close();
-})
 
-// Set up router
-const router = express.Router();
+// Reads from the terminal
+async function query() {
+    return await new Promise(resolve => read.question("Password: ", resolve));
+}
+
+// Gets password
+async function getPassword(){
+    try {
+        const answer = await query();
+        return answer;
+    } catch (error) {
+        console.log(`Error: ${error}`);
+    } finally {
+        read.close();
+    }
+}
+
+// Get the password
+const password = await getPassword();
 
 // Set up client with mongoDB database
 const client = new MongoClient(`mongodb+srv://dbo:${password}@physteach.dl3xqy3.mongodb.net/?retryWrites=true&w=majority`)
+
+// Set up router
+const router = express.Router();
 
 // Gets the presets from the database
 async function GetPresets() {
