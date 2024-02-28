@@ -56,3 +56,45 @@ To do:
     - [X] ~~*Differentials/Maths*~~ [2023-12-20]
     - [X] ~~*Graph*~~ [2023-12-20]
     - [X] ~~*Main running*~~ [2023-12-20]
+
+Latex:
+
+Analysis:
+- [ ] Talk about what it wont/can't do but ideas for the future
+    - [ ] Confirm with Marsh whether this is actually a good idea
+- [ ] Data flow diagram
+- [ ] Talk about what libraries I'll be using
+    - [ ] Talk about how routing and client-server is too complex so import it
+- [ ] IPSO (Input Process Storage Output) diagram
+    - [ ] For a simple IPSO (Input Process Storage Output) diagram, just use a 2x2 table and label each one. Then add an overview of all inputs, processes, data that needs to be stored and outputs.
+- [ ] Basic hardware and software that is needed
+- [ ] Talk about doing all the drawing by hand
+
+Design:
+- [ ] Another more detailed data flow diagram
+- [ ] Flow chart of how user navigates throughout system
+- [ ] File structure
+- [ ] Design what each piece of GUI will look like and display it
+- [ ] Rename data structures to data dictionary
+    - [ ] Each variable
+    - [ ] Its data type
+    - [ ] Its function
+- [ ] Data structures
+    - [ ] Talk about every single data structure used
+    - [ ] How is works
+    - [ ] Where to find it
+    - [ ] What is does
+- [ ] Important algorithms
+    - [ ] Write algorithms for drawing the stuff to the screen
+
+Coding:
+- [ ] Add literally any technique used
+- [ ] Double check the comments to make sure they are needed but not unneccessary
+- [ ] Do the defensive programming for inputting the values
+- [ ] Maybe rewrite code to make it properly nice
+- [ ] Appendix at the bottom that links to libraries and their descriptions
+
+Testing:
+Do this once the other sections are done.
+Check the word doc for what you need to do:
+https://docs.google.com/document/d/1J3559gahN2d9Eh4eJMbPT-6jB7lHTCJa-twuzZWgQS4/edit
