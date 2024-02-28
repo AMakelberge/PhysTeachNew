@@ -1,0 +1,2358 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage{minted}
+\usepackage{subfigure}
+\usepackage{pgf-pie}
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{algpseudocode}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0,0,0}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.98,0.98,0.96}
+
+\pgfplotsset{compat=1.18}
+
+\lstdefinelanguage{pug}{
+  keywords={head, meta, title, link, canvas, h1, h2, input, div, form, select, each, in, option, script},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={charset, name, content, rel, href, width, height, type, min, max, step, value, oninput, class, action, method, for, id, placeholder, preset, presets, src},
+  ndkeywordstyle=\color{cyan}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{brown}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+    literate={\$}{{\textcolor{blue}{\$}}}1,
+    mathescape=false
+}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, const, let},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{codepurple}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{brown}\ttfamily,
+  morestring=[b]',
+  morestring=[b]",
+  morestring=[b]`
+}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=3pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=1
+}
+
+\lstset{style=mystyle}
+
+
+\definecolor{GrayCodeBlock}{RGB}{241,241,241}
+\definecolor{BlackText}{RGB}{110,107,94}
+\definecolor{RedTypename}{RGB}{182,86,17}
+\definecolor{GreenString}{RGB}{96,172,57}
+\definecolor{PurpleKeyword}{RGB}{184,84,212}
+\definecolor{GrayComment}{RGB}{170,170,170}
+\definecolor{GoldDocumentation}{RGB}{180,165,45}
+\setlength{\parindent}{0pt}
+
+\title{A-level Physics Teaching Aid}
+\author{Alex Makelberge}
+\date{May 2023}
+\pagenumbering{arabic}
+
+\definecolor{folderbg}{RGB}{124,166,198}
+\definecolor{folderborder}{RGB}{110,144,169}
+\newlength\Size
+\setlength\Size{4pt}
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhead[R]{Center Number: 64390}
+\fancyhead[C]{Component Code: 7517/C}
+\fancyhead[L]{Candidate Number: 2791}
+
+\maketitle
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Analysis}
+
+\subsection{Project Problem Definition}
+Client: Charterhouse School Physics department
+\begin{itemize}
+\setlength\itemsep{-0.25em}
+    \item Thomas Marlow - Teacher
+    
+\begin{itemize}
+\setlength\itemsep{-0.25em}
+    \item[Contact: ]Thomas Marlow
+    \item[] Prince's Avenue
+    \item[] Godalming
+    \item[] Surrey
+    \item[] GU7 2DX
+    \item[] 07514 674203
+\end{itemize}
+
+\end{itemize}
+
+\subsection{Background to problem}
+
+Charterhouse Physics department is a pivotal part of the school. All of Charterhouse's 1000 students learn physics at some point. There are 6 classes of A-level students, which teach over 100 students. Dr Marlow likes to visualise complex physics concepts using diagrams and descriptions. \\\\
+Currently Dr Marlow draws diagrams on whiteboards and prints out diagrams on paper. This method can be quite ineffective when trying to explain moving objects such as planets and circular motion. Students only see snapshots and have to fill in the rest of the concept in their head. This can result in people getting the wrong idea and could potentially hinder their learning in the future. \\\\
+The Physics department have asked for my help in making an interactive teaching aid that displays various different physics phenomena and models and asks exemplar questions based on the phenomena in play.
+
+
+
+
+
+
+
+\newpage
+\subsection{Interview}
+\subsubsection{Dr Marlow - Teacher}
+
+What systems are you currently using to teach the A-level students?
+\begin{itemize}
+    \item[TM: ] I often use Phet and myPhysicsLab to help visualise phenomena, with various other animations from other sources. I regularly use PASCO datalogging software too, when completing demos and practicals.
+\end{itemize}
+What are the benefits of the current method you are using?
+\begin{itemize}
+    \item[TM: ] I really enjoy teaching using the animations as it is very visual and allows pupils to see abstract concepts in action, and also it promotes them to investigate phenomena by using such animation tools. Also there are often glitches or differences in approach or settings that can highlight misconceptions, again in a very visual way. I especially like animations that link to graphs as that also is a visual way to approach problems. It encourages the use of sketch diagrams in pupil's work which often is very useful! 
+\end{itemize}
+What are the drawbacks of the current method you are using?
+\begin{itemize}
+    \item[TM: ] It is perhaps less hands on, and perhaps sometimes gives pupils the illusion of understanding a phenomena (as they can see it in action) when perhaps they don't actually fully understand what is going on. There are some teachers that don't like using animations for exactly this reason. Additionally, I find it hard to find questions that integrate well with the animations at hand and I also struggle with manipulating the animations so that they do exactly what I want to demonstrate.
+\end{itemize}
+What different models/phenomena would be the most useful to model?
+\begin{itemize}
+    \item[TM: ] I often struggle to find good animations of the n-body problem in such a way that the strength of the gravitational forces. The double pendulum problem would be really useful too, so modelling the chaotic nature of the system, where a small change in initial conditions results in a very large change in the final conditions.
+\end{itemize}
+What other features would be useful for teaching?
+\begin{itemize}
+    \item[TM: ] A video tutorial of someone using the animation and outlining the features of it. Also making it intuitive enough for pupils to use the simulation themselves. For longer topics that take multiple lessons to explain, it would be nice to be able to save my progress and settings of the simulations so I can quickly come back to them.
+\end{itemize}
+
+\subsubsection{Conclusion}
+There are some good simulations mentioned such as Phet and myPhysicsLab that I am going to analyse as existing systems. Additionally, I am going to link the simulations to graphs and make the system as intuitive to use as possible. I could add questions add the end of the simulation to engage the students to aid them in a better understanding of the phenomena that they are learning. The two phenomena I am adding are going to be the n-body problem and the double pendulum problem. Additionally, I am going to add a login system that allows you to link an account to the simulations, letting you save your progress.
+
+
+\newpage
+\subsection{Existing Systems}
+
+I had a look at some of the current teaching aids that are available online. There are lots of different ones available but I have narrowed it down to 2 based on the suggestions from Dr Marlow in the interview.
+
+\begin{enumerate}
+\setlength\itemsep{-0.25em}
+    \item \href{https://phet.colorado.edu/en/simulations/browse}{PhET}: https://phet.colorado.edu/en/simulations/browse
+    \item \href{https://www.myphysicslab.com}{myPhysicsLab}: https://www.myphysicslab.com
+\end{enumerate}
+
+\subsubsection{PhET}
+`PhET provides fun, free, interactive, research-based science and mathematics simulations. We extensively test and evaluate each simulation to ensure educational effectiveness. These tests include student interviews and observation of simulation use in classrooms. The simulations are written in HTML5 (with some legacy simulations in Java or Flash), and can be run online or downloaded to your computer.' \cite{aboutphet} \\
+
+It currently works like this:
+\setlength\itemsep{-0.25em}
+\begin{enumerate}
+    \item There is a menu [Figure 1] in which you can browse many different simulations. These are organised per subject that they teach. (Physics, Chemistry, Maths, etc.) Additionally, there is a filter [Figure 2] that will show select simulations based on if they fit the criteria that you are looking for. The criteria are based on which topics are covered, what education level, what coding language they are written in, the features they have, and what language they are written in.
+    
+\begin{figure}[!htb]
+   \begin{minipage}{0.48\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{phetBrowseMenu.png}
+     \caption{Browse Menu for PhET}\label{Fig:Figure 1}
+   \end{minipage}\hfill
+   \begin{minipage}{0.48\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{phetFilterMenu.png}
+     \caption{Filter Menu for PhET}\label{Fig:Figure 2}
+   \end{minipage}
+\end{figure}
+
+
+
+
+\newpage
+    \item Once a simulation has been selected. You click on it and it goes the the page of that simulation.[Figure 3] This page tells you some information about the simulation such as which topics it covers, and the features. It distinctly lacks any descriptions about the specific phenomena related to the simulation (i.e. a brief description of what it is).
+
+\begin{figure}[!htb]
+   \begin{minipage}{0.48\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{phetSimulationPage.png}
+     \caption{Description Page of the Simulation}\label{Fig:Figure 3}
+   \end{minipage}\hfill
+   \begin{minipage}{0.48\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{phetInsideSimulation.png}
+     \caption{The Simulation Page}\label{Fig:Figure 4}
+   \end{minipage}
+\end{figure}
+
+    \item Within the simulation [Figure 4] there are numerous options:
+        \begin{enumerate}
+            \item Options to change the masses, position, and velocity of each body.
+            \item Choose the number of bodies in the simulation
+            \item A panel to display certain aspects of the simulation such as the centre of mass, the velocity, forces, path, grid, etc. 
+            \item A panel to choose the speed at which the simulation runs.
+            \item A panel with some predefined options such as Sun with Planet, Ellipses, Hyperbolics, Binary Systems, etc.
+            \item You can drag and drop the bodies in the space provided and place them anywhere you would like.
+            \item You can change the initial velocities with arrows on the page. You can also change the velocity of the body midway through the simulation by pausing and moving the arrow.
+            \item An introductory simulation that simplifies to get the hang of things quicker.
+            \item A button to change the position of the camera so that it goes to the centre of mass of all the bodies in the system.
+        \end{enumerate}
+
+
+\end{enumerate}
+
+
+
+
+\newpage
+\subsubsection{MyPhysicsLab}
+`I started developing this website as a way to practice what I was learning. I am now happy to use excellent tools such as HTML and JavaScript, and leave their development to others. I continue to work on physics simulations, with several new ones in development.' \cite{aboutphyslab} \\
+
+It currently works like this:
+\setlength\itemsep{-0.25em}
+\begin{enumerate}
+    \item There is a menu [Figure 5] with many different simulations to choose from. They are all in an array where similar simulations are next to each other. There is a feature where you can use all the simulations in a series and click next on each one to bring you to the next simulation once you are done with it. Underneath the simulations are different sections of information about how to share the simulations and that they are all open-source on GitHub. \cite{openSourcePhysLab}
+    
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\linewidth]{physLabMenu.png}
+  \caption{Browse Menu for PhET}\label{Fig:Figure 5}
+\end{figure}
+\newpage
+    \item Once a simulation has been selected. You click on it and it goes directly to the simulation running. [Figure 6] There are some initial parameters about the simulation that you can customise at it is running.
+
+\begin{figure}[!htb]
+   \begin{minipage}{0.48\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{physLabSim1.png}
+     \caption{Simulation Page}\label{Fig:Figure 6}
+   \end{minipage}\hfill
+   \begin{minipage}{0.48\textwidth}
+     \centering
+     \includegraphics[width=\linewidth]{physLabSim2.png}
+     \caption{Simulation with graph}\label{Fig:Figure 7}
+   \end{minipage}
+   \begin{minipage}{\textwidth}
+     \centering
+     \includegraphics[width=0.48\linewidth]{physLabSim3.png}
+     \caption{Simulation with Time Graph}\label{Fig:Figure 8}
+   \end{minipage}\hfill
+\end{figure}
+    \item Within the simulation [Figure 7][Figure 8] there are some different pages:
+        \begin{enumerate}
+            \item There is a general simulation page that has the simulation on full and all of the options are on the right.
+            \item A page which graphs the angles between the pendulum as it swings while the simulation is running (updates in real-time).
+            \item A page which graphs angles over time.
+            \item All the graphs can be customized to display anything you want.
+        \end{enumerate}
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\linewidth]{physLabSim4.png}
+  \caption{Mathematical description}\label{Fig:Figure 9}
+\end{figure}
+    \item Underneath the simulation is a descriptions and explanation of all of the maths [Figure 9] involved in the simulation and the physical phenomena. It goes heavily in depth an gives a complete understanding for the user.
+\end{enumerate}
+
+
+\subsubsection{Conclusion}
+There are some good ideas from these websites that would benefit my project. \\
+Features that will provide the best use:
+\begin{itemize}
+\setlength\itemsep{-0.25em}
+    \item Main Menu to choose what simulation to work on
+    \item Lots of customizability in the options within each simulation
+    \item Being able to adjust the simulation in real-time as it is happening
+    \item Moving the camera to follow certain parts of the simulation
+    \item Graphs to display the data from within the simulation
+    \item An in-depth explanation of the physics and maths behind all of the phenomena.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\subsubsection{Flowchart In-class system}
+\begin{center}
+    \includegraphics[scale=0.2]{Analysis - Current System.png} 
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\subsection{Questionnaire}
+Link to my form: \href{https://forms.gle/vJ3h9exZSyEa2a659}{https://forms.gle/vJ3h9exZSyEa2a659}
+\\
+
+\textbf{Questions:}
+
+\begin{itemize}
+    \item \textbf{Do you find visual aids useful when trying to learn about a topic?}
+\begin{center}
+\begin{tikzpicture}
+\pie [rotate=180, radius=2.5] {94.7/Yes, 5.3/No}
+\end{tikzpicture}    
+\end{center}
+The vast majority find visual aids useful, therefore I need to make the simulation as interactive as possible and convey ideas through the simulation as much as possible. Additionally, in the explanations there should be lots of diagrams as visual aid for better learning.
+\end{itemize}
+
+
+\begin{itemize}
+    \item \textbf{Suppose there is a simulation of gravity on celestial bodies, what demos would you want?}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis} [
+xbar,
+nodes near coords, bar width=0.2cm,
+symbolic y coords = {Sun and Earth, Earth and Moon, Binary system, Comet between 2 stars},
+enlarge y limits=.2,
+enlarge x limits=.2] 
+  \addplot coordinates { (9,Sun and Earth) (11,Earth and Moon) (10,Binary system) (13,Comet between 2 stars)};
+\end{axis}
+\end{tikzpicture}    
+\end{center}
+\newpage
+\paragraph{Extra suggestions:} \begin{itemize}
+    \item Black holes, getting sucked into one
+    \item A near miss of an asteroid hitting earth
+    \item Galaxy clusters
+    \item Sun, Earth, and Moon
+\end{itemize}
+All of the simulations initially proposed were very popular and I think I shall incorporate all of them into the simulation. For the extra suggestions, black holes sound very interesting and should be added. A near miss of an asteroid seems interesting (maybe also a comparison of one hitting and one not). Galaxy clusters sounds too large in scale and therefore unfeasible. Sun, Earth, and Moon sounds quite simple as well, so should be incorporated.
+\end{itemize}
+
+\begin{itemize}
+    \item \textbf{After seeing the demo, where do you want an explanation (equations and such)?}
+\begin{center}
+\begin{tikzpicture}
+\pie [rotate=180, radius=2.5] {36.8/Popups of small bits of information, 26.3/On the same page, 15.8/On a separate page after seeing the simulation, 15.8/Underneath, 5.3/Parallax effect}
+\end{tikzpicture}    
+\end{center}
+The two most popular were popups and having it on the same page, I should definitely incorporate aspects of both. Have some general information permanently on a section of the page and as more nuanced features are discovered, a little popup to give a quick explanation.
+\end{itemize}
+
+\newpage
+\begin{itemize}
+    \item \textbf{Would you want graphs that describe the motion and get updated live as the simulation runs?}
+\begin{center}
+\begin{tikzpicture}
+\pie [rotate=180, radius=2.5] {100/Yes}
+\end{tikzpicture}    
+\end{center}
+As was suggested by Dr Marlow, live updated graphs definitely need to be incorporated into the simulation.
+\end{itemize}
+
+\begin{itemize}
+    \item \textbf{After seeing the simulation and explanation, do you want questions to test you on what you have just learned?}
+\begin{center}
+\begin{tikzpicture}
+\pie [rotate=180, radius=2.5] {31.6/No, 31.6/Yes (pdf), 36.8/Yes (same page)}
+\end{tikzpicture}    
+\end{center}
+There is a definite desire for questions but a split on the format of the question delivery. Therefore, both ways of having questions should be possible, i.e. have the questions on the page and then a button to export them to a pdf.
+\end{itemize}
+
+\newpage
+\begin{itemize}
+    \item \textbf{What type of GUI do you want on the model selection screen?}
+\begin{center}
+\begin{tikzpicture}
+\pie [rotate=180, radius=2.5] {66.7/Boxes in grid, 33.3/List of models}
+\end{tikzpicture} 
+\end{center}
+Definite favour for the boxes lined in a grid pattern with a preview image, title, and short description.
+\end{itemize}
+
+
+
+
+
+
+
+\newpage
+\subsection{Technical Research}
+
+\subsubsection{N-Body Problem}
+
+The n-body problem is a fundamental concept in physics and astronomy that deals with the mathematical modeling and prediction of the motions of a group of celestial bodies, such as planets, stars, or galaxies, under the influence of their mutual gravitational interactions. It is called the ``n-body" problem because it involves calculating the motion of ``n" particles simultaneously.
+
+The challenge of the n-body problem lies in the fact that the gravitational force between any two bodies depends on their masses and the distance between them. As a result, each body's motion is influenced by the gravitational attraction exerted by every other body in the system. 
+
+\paragraph{Newton's law of universal gravitation}
+\paragraph{}
+The gravitational force between two bodies is given by\cite{nbody}:
+\begin{equation}
+    F = \frac{Gm_1m_2}{r^2} 
+\end{equation}
+Where $G = 6.67 \times 10^{-11}$ is the gravitational constant, $m_1$ and $m_2$ are the masses of the two bodies, and $r$ is the distance between their centers of mass. 
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.7\linewidth]{gravity.png}
+  \caption{Gravity acting on two bodies}\label{Fig:Figure 10}
+\end{figure}
+
+Given Newton's second law of motion: $F=ma$, we can derive that the acceleration on an object due to another object is given by:
+\begin{equation}
+    a = \frac{Gm_1}{r^2}
+\end{equation}
+Where $m_1$ is the mass of the other object and $r$ is the distances between their centres of mass.
+\\\\
+We can also derive the equation for the acceleration on a body due to all the other celestial bodies around it:
+\begin{equation}
+    ||\vec{a}|| = G\sum_{i=1}^{n}\frac{m_i}{||r_i-r||^2}
+\end{equation}
+Where $n$ is the number of bodies acting on the original body. $m_i$ is the mass of the i-th body. $r_i$ is the position vector of the i-th body. $r$ is the position vector of the body. This equation always gives a positive answer as it is only calculating the magnitude of the acceleration, the direction is calculated very simply using some basic logic.
+\\\\
+Acceleration ($\vec{a}$) is the change in velocity ($\vec{v}$) which is the change in displacement ($\vec{s}$). Acceleration is given by the equation:
+\begin{equation}
+    \Delta\vec{a} = \frac{\Delta\vec{v}}{t}
+\end{equation}
+Velocity by the equation:
+\begin{equation}
+    \Delta\vec{v} = \frac{\Delta\vec{s}}{t}
+\end{equation}
+Therefore the change in displacement is given by:
+\begin{equation}
+    \Delta\vec{s} = \Delta\vec{a} \times t^2
+\end{equation}
+
+These equations are valid as the $t$ will be very small as the simulation will update every single frame.
+\paragraph{}
+It's important to note that Newton's laws of motion are accurate within the realm of classical mechanics and when the speeds involved are significantly smaller than the speed of light. In extreme conditions, such as near the speed of light or in very strong gravitational fields, Einstein's theory of general relativity is necessary for a more precise description of celestial motion. General relativity is not taught at A-level and therefore not necessary to analyse and program as it would give no benefit to the students learning.
+
+\newpage
+\subsubsection{Double Pendulums}
+The double pendulum consists of an upper pendulum and a lower pendulum, where each pendulum has its own mass and length. The upper pendulum is attached to a fixed point, and the lower pendulum is attached to the end of the upper pendulum. The masses of the pendulums are denoted as $m_1$ and $m_2$ with corresponding positions (x1, y1) and (x2, y2), while the lengths of the pendulums are denoted as $l_1$ and $l_2$. The gravitational acceleration is represented by g.
+\\\\
+The behavior of the double pendulum can be described using the equations of motion. These equations involve the angles made by each pendulum with respect to a reference vertical line. Let $\theta_1$ represent the angle of the upper pendulum with the vertical, and $\theta_2$ represent the angle of the lower pendulum with respect to the upper pendulum.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.45\linewidth]{Double-Pendulum.png}
+  \caption{Gravity acting on two bodies}\label{Fig:Figure 11}
+\end{figure}
+
+For mass $m_1$, the forces acting on it are its weight $(m_1 \times g)$ and the tension in the rod connecting it to mass $m_2$. The tension can be decomposed into horizontal and vertical components.
+\\\\
+
+
+The positions of the masses are given by \cite{scienceworld}:
+\begin{eqnarray}
+    x_1 &=& l_1\sin\theta_1 \\
+    \nonumber \\
+    y_1 &=& -l_1\cos\theta_1 \\
+    \nonumber \\
+    x_2 &=& l_1\sin\theta_1 + l_2\sin\theta_2 \\
+    \nonumber \\
+    y_2 &=& -l_1\cos\theta_1 - l_2\cos\theta_2 
+\end{eqnarray}
+
+The potential energy of the system is then given by:
+\begin{eqnarray}
+    V &=& m_1gy_1 + m_2gy_2 \\
+    \nonumber \\
+      &=& -(m_1 + m_2)gl_1\cos\theta_1 - m_2gl_2\cos\theta_2
+\end{eqnarray}
+
+The kinetic energy is given by:
+\begin{eqnarray}
+    T &=& \frac{1}{2}m_1v_1^2 + \frac{1}{2}m_2v_2^2 \\
+    \nonumber \\
+    T &=& \frac{1}{2}m_1l_1^2\dot{\theta}_1^2 + \frac{1}{2}m_2[l_1^2\dot{\theta}_1^2 + l_2^2\dot{\theta}_2^2 + 2l_1l_2\dot{\theta}_1\dot{\theta}_2\cos(\theta_1 - \theta_2)]
+\end{eqnarray}
+
+The Lagrangian is then:
+\begin{eqnarray}
+    L &\equiv& T - V \\ \nonumber \\
+    &=& \frac{1}{2}(m_1 + m_2)l_1^2\dot{\theta}_1^2 + \frac{1}{2}m_2l_2^2\dot{\theta}_2^2 + m_2l_1l_2\dot{\theta}_1\dot{\theta}_2\cos(\theta_1 - \theta_2) \nonumber \\ 
+    & & + (m_1 + m_2)gl_1\cos\theta_1 + m_2gl_2\cos\theta_2
+\end{eqnarray}
+
+Therefore, the momenta with $\theta_1$ and $\theta_2$ can be obtained from $L$:
+\begin{eqnarray}
+    p_{\theta_1} &=& \frac{\partial L}{\partial\dot{\theta}_1} = (m_1 + m_2)l_1^2\dot{\theta}_1 + m_2l_1l_2\dot{\theta}_2\cos(\theta_1 - \theta_2) \\ \nonumber \\
+    p_{\theta_2} &=& \frac{\partial L}{\partial\dot{\theta}_2} = m_2l_2^2\dot{\theta}_2 + m_2l_1l_2\dot{\theta}_1\cos(\theta_1 - \theta_2)
+\end{eqnarray}
+
+The equations of motion of the system are the Euler-Lagrange equations:
+\begin{eqnarray}
+    \frac{d}{dt}\left(\frac{\partial L}{\partial\dot{\theta}_i}\right) - \frac{\partial L}{\partial \theta_i} = 0 \Longrightarrow \frac{dp_{\theta_i}}{dt} - \frac{\partial L}{\partial \theta_i} = 0 \mbox{ for } i = 1,2 
+\end{eqnarray}
+
+Since:
+\begin{eqnarray}
+    \frac{dp_{\theta_1}}{dt} &=& (m_1 + m_2)l_1^2\ddot{\theta}_1 + m_2l_1l_2\ddot{\theta}_2\cos(\theta_1 - \theta_2) \nonumber \\
+    & & - m_2l_1l_2\dot{\theta}_1\dot{\theta}_2\sin(\theta_1 - \theta_2) + m_2l_1l_2\dot{\theta}_2^2\sin(\theta_1 - \theta_2) \\
+    \nonumber \\
+    \frac{dp_{\theta_2}}{dt} &=& m_2l_2^2\ddot{\theta}_2 + m_2l_1l_2\ddot{\theta}_1\cos(\theta_1 - \theta_2) \nonumber \\
+    & & - m_2l_1l_2\dot{\theta}_1^2\sin(\theta_1 - \theta_2) + m_2l_1l_2\dot{\theta}_1\dot{\theta}_2\sin(\theta_1 - \theta_2) \\
+    \nonumber \\
+    \frac{\partial L}{\partial \theta_1} &=& -m_2l_1l_2\dot{\theta}_1\dot{\theta}_2\sin(\theta_1 - \theta_2) - (m_1 + m_2)gl_1\sin\theta_1 \\
+    \nonumber \\
+    \frac{\partial L}{\partial \theta_2} &=& m_2l_1l_2\dot{\theta}_1\dot{\theta}_2\sin(\theta_1 - \theta_2) - m_2gl_2\sin\theta_2
+\end{eqnarray}
+
+Then plugging into equation (19), you get (after dividing by $l_1$ when $i=1$ and by $m_2l_2$ when $i=2$):
+\begin{eqnarray}
+    (m_1 + m_2)l_1\ddot{\theta}_1 + m_2l_2\ddot{\theta}_2\cos(\theta_1 - \theta_2) \nonumber \\
+    + m_2l_2\dot{\theta}_2^2\sin(\theta_1 - \theta_2) + (m_1 + m_2)g\sin\theta_1 = 0 \\
+    \nonumber \\
+    l_2\ddot{\theta}_2 + l_1\ddot{\theta}_1\cos(\theta_1 - \theta_2) - l_1\dot{\theta}_1^2\sin(\theta_1 - \theta_2) + g\sin\theta_2 = 0
+\end{eqnarray}
+
+Equations (24) and (25) form a system of coupled second-order nonlinear differential equations. Dividing equation (24) by $(m_1 + m_2)l_1$ and equation (16) by $l_2$ and also moving all terms which do not involve $\ddot{\theta}_1$ and $\ddot{\theta}_2$ to the right-hand side, we obtain:
+
+\begin{eqnarray}
+    \ddot{\theta}_1 + \alpha_1(\theta_1,\theta_2)\ddot\theta_2 = f_1(\theta_1,\theta_2,\dot\theta_1,\dot\theta_2) \\
+    \nonumber \\
+    \ddot{\theta}_2 + \alpha_2(\theta_1,\theta_2)\ddot\theta_1 = f_2(\theta_1,\theta_2,\dot\theta_1,\dot\theta_2) 
+\end{eqnarray}
+where:
+\begin{eqnarray}
+    \alpha_1(\theta_1,\theta_2) &:=& \frac{l_2}{l_1}\left(\frac{m_2}{m_1 + m_2}\right)\cos(\theta_1 - \theta_2) \\
+    \nonumber \\
+    \alpha_2(\theta_1,\theta_2) &:=& \frac{l_1}{l_2}\cos(\theta_1 - \theta_2)
+\end{eqnarray}
+and:
+\begin{eqnarray}
+    f_1(\theta_1,\theta_2,\dot\theta_1,\dot\theta_2) &:=& -\frac{l_2}{l_1}\left(\frac{m_2}{m_1 + m_2}\right)\dot\theta_2^2\sin(\theta_1 - \theta_2) - \frac{g}{l_1}\sin\theta_1 \\
+    \nonumber \\
+    f_2(\theta_1,\theta_2,\dot\theta_1,\dot\theta_2) &:=& \frac{l_1}{l_2}\dot\theta_1^2\sin(\theta_1 - \theta_2) - \frac{g}{l_2}\sin\theta_2
+\end{eqnarray}
+
+$f_1$ does not depend on $\dot\theta_1$ and $f_2$ does not depend on $\dot\theta_2$. Equations (26) and (27) can be combined into a single equation:
+
+\begin{equation}A\begin{pmatrix}
+        \ddot{\theta}_1\\
+        \ddot{\theta}_2
+    \end{pmatrix}=\begin{pmatrix}
+        1 & \alpha_1\\
+        \alpha_2 & 1
+    \end{pmatrix}\begin{pmatrix}
+        \ddot{\theta}_1\\
+        \ddot{\theta}_2
+    \end{pmatrix}=\begin{pmatrix}
+        f_1\\
+        f_2
+    \end{pmatrix}\end{equation}
+
+where the matrix $A$ depends on $\theta_1$ and $\theta_2$ since $\alpha_1$ and $\alpha_2$ depend on these variables. Being a 2 x 2 matrix, $A$ can be inverted directly:
+
+\begin{equation}
+    A^{-1} = \frac{1}{\det(A)}\begin{pmatrix}
+        1 & -\alpha_1\\
+        -\alpha_2 & 1
+    \end{pmatrix} = \frac{1}{1-\alpha_1\alpha_2}\begin{pmatrix}
+        1 & -\alpha_1\\
+        -\alpha_2 & 1
+    \end{pmatrix}
+\end{equation}
+
+Notice that $A$ is always invertible since:
+\begin{equation}
+    \det(A) = 1 - \alpha_1\alpha_2 = 1 - \left(\frac{m_2}{m_1 + m_2}\right)\cos^2(\theta_1 - \theta_2) > 0
+\end{equation}
+
+because $m_2/(m_1 + m_2) < 1$ and $\cos^2(x) \le 1$ for all real values of $x$. From equations (32) and (33) we obtain:
+
+\begin{equation}
+    \begin{pmatrix}
+        \ddot\theta_1\\
+        \ddot\theta_2
+    \end{pmatrix}=A^{-1}\begin{pmatrix}
+        f_1\\
+        f_2
+    \end{pmatrix} = \frac{1}{1-\alpha_1\alpha_2}\begin{pmatrix}
+        f_1 - \alpha_1f_2\\
+        -\alpha_2f_1 + f_2
+    \end{pmatrix}
+\end{equation}
+
+Finally, letting $\omega_1 := \dot\theta_1$ and $\omega_2 := \dot\theta_2$, we can write the equations of motion of the double pendulum as a system of coupled first order differential equations on the variables $\theta_1, \theta_2, \omega_1, \omega_2$:
+
+\begin{equation}
+    \frac{d}{dt}\begin{pmatrix}
+        \theta_1\\
+        \theta_2\\
+        \omega_1\\
+        \omega_2
+    \end{pmatrix}=\begin{pmatrix}
+        \omega_1\\
+        \omega_2\\
+        g_1(\theta_1,\theta_2,\omega_1,\omega_2)\\
+        g_2(\theta_1,\theta_2,\omega_1,\omega_2)
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    g_1 := \frac{f_1 - \alpha_1f_2}{1 - \alpha_1\alpha_2} \quad g_2 := \frac{-\alpha_2f_1 + f_2}{1 - \alpha_1\alpha_2}
+\end{equation}
+Equation (36) can be solved numerically using a numerical method.
+
+\newpage
+\subsubsection{Numerical methods}
+These are methods to numerically approximate second order coupled differential equations which are required to find values for the next values of $\theta$ for the next frame in the simulation. 
+Let: 
+\begin{equation}
+    \frac{dy}{dx} = f(x,y)
+\end{equation}
+Where the initial conditions are given by:
+\begin{equation}
+    y(x_0) = y_0
+\end{equation}
+and $h$ is the step-size for the next $x$ value.
+
+\paragraph{Euler Method\cite{eulerMethod}:} 
+\paragraph{}
+Also known as a 1st order Runge-Kutta Method is not very accurate but is very simple.
+The formula is:
+\begin{equation}
+    y_1 = y_0 + hf(x_0,y_0)
+\end{equation}
+
+\paragraph{4th Order Runge-Kutta Method\cite{rk4Method}:}
+\paragraph{}
+This is a very accurate numerical method that solves very efficiently and correctly.
+The formula is:\begin{eqnarray}
+    k_1 &=& f(x_n,y_n) \\
+    k_2 &=& f\left(x_n + \frac{h}{2}, y_n + h\frac{k_1}{2}\right) \\
+    k_3 &=& f\left(x_n + \frac{h}{2}, y_n + h\frac{k_2}{2}\right) \\
+    k_4 &=& f(x_n + h, y_n + hk_3) \\
+    y_{n+1} &=& y_n + \frac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4) \\
+    x_{n+1} &=& x_n + h
+\end{eqnarray}
+
+\newpage
+\paragraph{Euler vs RK4:}
+\paragraph{}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.85\linewidth]{EulerMethodVsRunge-Kutta.png}
+  \caption{Direct comparison of RK4 and Euler}\label{Fig:Figure 12}
+\end{figure}
+
+RK4 is considerably more accurate than the Euler method.
+
+\paragraph{Conclusion}
+\paragraph{}
+RK4 is a lot more accurate than Euler method and therefore should definitely be used in the simulation. What would be even better if you can change between Euler and RK4 and directly compare both of them next to each other with the same starting conditions.
+
+\newpage
+\subsection{Users and Limitations}
+
+There would be numerous users of the system (all students and teachers in the physics department) with Mr Marlow being the primary user and using it to demonstrate in front of the entire class. All the teachers and students are computer literate to a level where the complexity of the system won't be a limiting factor. It is still important that the students and teachers spend as little time troubleshooting issues and learning how the system works, it must be adequately simple and intuitive to use so it doesn't waste time in lessons.
+\\\\
+The limitations:
+\begin{itemize}
+    \item Hardware - The computers in the physics department have significant processing limitations and therefore the system should be sufficiently efficient that it runs smoothly on these devices. One way to solve this would be to offload simulation calculations onto a server.
+    \item Software - The IT department has put significant limitations to which applications can be installed on the school PCs, therefore an installation would likely not work. Having everything running on a website would not require any installations and therefore make it more accessible to everyone using it.
+    \item Time - The project needs to be finished by March as those are my schools's internal deadlines.
+    \item My skills - the problem can't be too complex that it becomes impossible for me to solve within the allotted time. 
+    
+\end{itemize}
+
+
+\newpage
+\subsection{Objectives}
+\begin{enumerate}[label=\textbf{\arabic*}.]
+    \item \textbf{General}
+    \begin{enumerate}[label*=\textbf{\arabic*}.]
+        \item The program must run as a website.
+        \item The GUI must be simple, clean, and easy to understand.
+        \begin{enumerate}[label*=\textbf{\arabic*}.]
+            \item Should be intuitive for users to use.
+            \item There need to be big boxes for the menu screen where you can choose between which simulations to do.
+            \item Every simulation should get their own page.
+            \item There should be lots of pages with less information than few pages with lots of information.
+            \item Information should pop up as you discover different parts of each simulation to help with what you're learning.
+            \item Each simulation should also have a separate page linked to it that will contain a recap and summary of all of the little bits of information of each simulation.
+            \item The GUI must stay coherent across many different devices (phones, tablets, laptops).
+        \end{enumerate}
+        \item The website must be able to run on school computers.
+        \begin{enumerate}[label*=\textbf{\arabic*}.]
+            \item It must not have any pop-ups.
+            \item It must not use any banned websites/data.
+            \item It must not contain any code that needs to be downloaded to the user's computer.
+            \item It must work on any browser engines which could include WebKit, Blink, and Gecko.
+            \item It must be efficient and run quickly on low-performance computers.
+        \end{enumerate}
+    \end{enumerate}
+    \item \textbf{Simulations}
+    \begin{enumerate}[label*=\textbf{\arabic*}.]
+        \item It system must be modular so you can add more simulations retrospectively without the need to redesign all of the GUI.
+        \item There should be filters to choose which simulations show up.
+        \item There could be a system to easily make simulations with a predetermined layout where you provide some information about the simulation (shapes, and variables) and the differential equation to numerically solve and it could automatically run.
+        \item There must be graphs that dynamically update while the program runs.
+        \begin{enumerate}[label*=\textbf{\arabic*}.]
+            \item Choose any 2 variables to plot against each other.
+            \item Be able to wipe the graph.
+            \item Be able to pause and stop the recording of data.
+            \item Be able to click on a piece of data and it shows its values.
+            \item Be able to export the graph to pdf.
+        \end{enumerate}
+    \end{enumerate}
+    \item \textbf{Login system}
+    \begin{enumerate}[label*=\textbf{\arabic*}.]
+        \item Users must be able to create accounts through different methods, i.e. google account or apple account.
+        \item Users must be able to save their graphs that they create, and load them to continue working on them (might require a new .graph data structure).
+        \item Users must be able to save their progress of how much of the test they have done.
+        \item Users must have customisable accounts.
+        \begin{enumerate}[label*=\textbf{\arabic*}.]
+            \item Profile-picture
+            \item Username
+            \item Description
+        \end{enumerate}
+        \item There might be a forum at the bottom of each page where you can add comments to ask questions and talk about the simulations.
+        \begin{enumerate}[label*=\textbf{\arabic*}.]
+            \item Automatic computer moderation to filter comments
+            \item The ability for certain users to be moderators/admins where they are able to delete comments and approve simulations.
+        \end{enumerate}
+        \item Could create an API so other users can make simulations and upload them to the website for everyone to use.
+    \end{enumerate}
+    \item \textbf{N-Body problem}
+    \begin{enumerate}[label*=\textbf{\arabic*}.]
+        \item It must use Newton's law of gravitation 
+        \item It must accurately run
+        \item Users must be able to dynamically change the celestial bodies while the simulation runs.
+        \begin{enumerate}[label*=\textbf{\arabic*}.]
+            \item Drag and drop celestial bodies.
+            \item Add initial variables before adding a body.
+            \item Be able to pause the simulation.
+            \item When clicking to place planet, be able to drag to give an initial velocity.
+            \item Be able to delete celestial bodies.
+        \end{enumerate}
+        \item Have pre-set simulations.
+        \begin{enumerate}[label*=\textbf{\arabic*}.]
+            \item Comet between 2 stars
+            \item Binary system
+            \item Earth and Moon
+            \item Sun and Earth
+            \item Sun, Earth, and Moon
+            \item Black holes, getting sucked into one
+            \item A near miss of an asteroid hitting earth
+        \end{enumerate}
+        
+    \end{enumerate}
+    \item \textbf{Double Pendulum problem}
+    \begin{enumerate}[label*=\textbf{\arabic*}.]
+        \item It must use the correct equations.
+        \item It must run accurately.
+        \item User must be able to dynamically change the simulation as it runs.
+        \begin{enumerate}[label*=\textbf{\arabic*}.]
+            \item Change gravity.
+            \item Independently change the length of each rod.
+            \item Independently change the mass of each part.
+            \item Drag the pendulum and move it to any starting position you want.
+            \item Change the numerical method used to solve it.
+        \end{enumerate}
+        \item Have options to view (with explanation) each of the modes of the double pendulum
+        \begin{enumerate}[label*=\textbf{\arabic*}.]
+            \item Simple oscillation (like the single pendulum).
+            \item Alternating oscillation (top to the left, bottom to right, mean position stays constant).
+            \item Chaotic motion without enough energy to flip over.
+            \item Chaotic motion with enough energy to flip over.
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+
+
+
+\newpage
+\section{Design}
+
+\subsection{Language}
+I am most familiar with Python and have been programming with it the most throughout my life. But I am not able to use it as I need the program to run efficiently on websites. I will therefore definitely need HTML, CSS, and JavaScript. Simulations will be written in JavaScript, web-pages will be built in HTML, and CSS to make the front-end nice. When I initially started coding some prototypes, they were in Python due to me being familiar with them but then I quickly transitioned to using JavaScript for all sims.
+
+\subsection{High level overview}
+\begin{center}
+    \includegraphics[scale=0.2]{General Overview.png} 
+\end{center}
+
+\newpage
+\subsection{User interface}
+\subsubsection{Main menu}
+\subsubsection{Simulation page}
+\subsubsection{Test/Explanation page}
+
+\newpage
+\subsection{Permanent data storage}
+Data will be securely stored on the server which will contain the data about users. There won't be any data/cookies stored on the user's computer as that would overcomplicate things.\\\\
+\textbf{UML diagram of data structure: }
+\begin{center}
+    \includegraphics[scale=0.2]{UserDB.png} 
+\end{center}
+
+\newpage
+\subsection{Algorithms - Login system}
+\subsubsection{Getting onto the website}
+\begin{center}
+    \includegraphics[scale=0.2]{Entering Website.png} 
+\end{center}
+
+\subsubsection{Logging in}
+\begin{center}
+    \includegraphics[scale=0.2]{LoggingIn.png} 
+\end{center}
+
+\newpage
+\subsubsection{Registering}
+\begin{center}
+    \includegraphics[scale=0.15]{UserRegistration.png} 
+\end{center}
+
+
+
+\newpage
+\subsection{Algorithms - n-body problem}
+
+\subsubsection{Data-structures}
+
+\begin{center}
+\begin{tabularx}{0.8\textwidth} { 
+  | >{\raggedright\arraybackslash}X 
+  | >{\raggedleft\arraybackslash}X | }
+ \hline
+ \textbf{Item} & \textbf{data-structure} \\
+ \hline
+ acceleration  & vector  \\
+\hline
+velocity & vector \\
+\hline
+position & vector \\
+\hline
+G & constant \\
+\hline
+frameRate & constant \\
+\hline
+planet & object \\
+\hline
+force & float \\
+\hline
+distance & float \\
+\hline
+running & bool \\
+\hline
+otherPlanets & list \\
+\hline
+
+\end{tabularx}
+\end{center}
+
+\subsubsection{Update planet positions}
+
+This algorithm takes the position of all the other planets, calculates the distance from the current to the other planet and then calculates the resultant force from all the planets on the current planet. It then uses this force to update the acceleration of the current planet, then updating the velocity, then updating the position.\\
+
+\begin{algorithmic}
+\Procedure{updatePositions}{otherPlanets, frameRate}
+    \State force = 0
+    \For {planet \textbf{in} otherPlanets}
+        \State distance = planetDistance - myDistance
+        \State force += planet.mass/distance**2
+    \EndFor
+    \State acceleration += G * force
+    \State velocity += acceleration/frameRate
+    \State position += velocity/framerate
+
+    \State \textbf{return} acceleration, velocity, position
+\EndProcedure
+\end{algorithmic}
+
+\newpage
+\subsubsection{Update simulation}
+
+This updates the screen of the simulation, it clears the screen, updates positions of all the planets, and draws the planets to the screen.\\
+
+\begin{algorithmic}
+\State frameRate = 60
+\While{running}
+    \State clear screen
+    \For{planet \textbf{in} planets}
+        \State planet.updatePosition(otherPlanets, frameRate)
+        \State draw planet
+    \EndFor
+\EndWhile
+\end{algorithmic}
+
+\subsection{Algorithms - double pendulum problem}
+
+\subsubsection{Data-structures}
+\begin{center}
+\begin{tabularx}{0.8\textwidth} { 
+  | >{\raggedright\arraybackslash}X 
+  | >{\raggedleft\arraybackslash}X | }
+ \hline
+ \textbf{Item} & \textbf{data-structure} \\
+ \hline
+ $\theta_1$ & float \\
+ \hline
+ $\theta_2$ & float \\
+ \hline
+ $\omega_1$ & float \\
+ \hline
+ $\omega_2$ & float \\
+ \hline
+ $m_1$ & constant \\
+ \hline
+ $m_2$ & constant \\
+ \hline
+ $l_1$ & constant \\
+ \hline
+ $l_2$ & constant \\
+ \hline
+ $g$ & constant \\
+ \hline
+ $h$ & constant \\
+ \hline
+ $k$ & list \\
+ \hline
+\end{tabularx}
+\end{center}
+
+
+
+ \newpage
+\subsubsection{Differential}
+This is the equation that needs to be solved, it is a function that returns the $\omega_1, \omega_2, \dot\omega_1, \dot\omega_2$ given $\theta_1, \theta_2, \omega_1, \omega_2$.\\
+\begin{algorithmic}
+\Procedure{dydx}{$\theta_1, \theta_2, \omega_1, \omega_2$}\\
+    \State delta = $\theta_2$ - $\theta_1$\\
+    \State den1 = ($m_1$ + $m_2$) * $l_1$ - $m_2$ * $l_1$ * $\cos^2(delta)$\\
+    \State den2 = ($l_2$/$l_1$) * den1 \\
+
+    \State dotom1 = ($m_2$ * $l_2$ * $\omega_2^2$ * $\sin^2(delta)$
+    + $m_2$ * $g$ * $\sin(\theta_2)$ * $\sin(delta)$
+    + $m_2$ * $l_2$ * $\omega^2_2$ * $\sin(delta)$
+    - ($m_1$ + $m_2$) * $g$ * $\sin(\theta_1)$)/den1 \\
+
+    \State dotom2 = ((-$l_1$ / $l_2$) * $\omega^2_1$ * $\sin(delta)$ * $\cos(delta)$
+    + ($m_1$ + $m_2$) * $g$ * $\sin(\theta_1)$ * $\sin(delta)$
+    - ($m_1$ + $m_2$) * $l_1$ * $\omega^2_1$ * $\sin(delta)$
+    - ($m_1$ + $m_2$) * $g$ * $\sin(\theta_1)$)
+    / den2 \\
+
+    \State \textbf{return} $\omega_1, \omega_2, \dot\omega_1, \dot\omega_2$\\
+    
+\EndProcedure
+\end{algorithmic}
+
+\subsubsection{RK4}
+This is an algorithm that inputs a step height - h and current values to calculate the next value of the function with differential of dydx. \\
+\begin{algorithmic}
+\Procedure{RK4}{$h, \theta_1, \theta_2, \omega_1, \omega_2$}\\
+    \State $k_1 = dydx(\theta_1, \theta_2, \omega_1, \omega_2)$\\
+    \State $k_2 = dydx(\theta_1 + 0.5*h*k_1[0], \theta_2 + 0.5*h*k_1[1], \omega_1 + 0.5*h*k_1[2], \omega_2 + 0.5*h*k_1[3]) $\\
+    \State $k_3 = dydx(\theta_1 + 0.5*h*k_2[0], \theta_2 + 0.5*h*k_2[1], \omega_1 + 0.5*h*k_2[2], \omega_2 + 0.5*h*k_2[3]) $\\
+    \State $k_4 = dydx(\theta_1 + h*k_3[0], \theta_2 + h*k_3[1], \omega_1 + h*k_3[2], \omega_2 + h*k_3[3]) $\\
+    \State $\theta_1 = \theta_1 + (h/6) * (k_1[0] + 2*k_2[0] + 2*k_3[0] + k_4[0])$\\
+    \State $\theta_2 = \theta_2 + (h/6) * (k_1[1] + 2*k_2[1] + 2*k_3[1] + k_4[1])$\\
+    \State $\omega_1 = \omega_1 + (h/6) * (k_1[2] + 2*k_2[2] + 2*k_3[2] + k_4[2])$\\
+    \State $\omega_2 = \omega_2 + (h/6) * (k_1[3] + 2*k_2[3] + 2*k_3[3] + k_4[3])$\\
+    \State \textbf{return} $\theta_1, \theta_2, \omega_1, \omega_2$\\
+\EndProcedure
+\end{algorithmic}
+
+\subsubsection{Euler method}
+
+This is the algorithm for the Euler integration method.
+
+\begin{algorithmic}
+\Procedure{EulerMethod}{$h, \theta_1, \theta_2, \omega_1, \omega_2$}\\
+    \State $\omega_1, \omega_2, \dot\omega_1, \dot\omega_2$ = dydx($\theta_1, \theta_2, \omega_1, \omega_2$)\\
+    \State $\theta_1$ = $\theta_1$ + $h\omega_1$\\
+    \State $\theta_2$ = $\theta_2$ + $h\omega_2$\\
+    \State $\omega_1$ = $\omega_1$ + $h\dot\omega_1$\\
+    \State $\omega_2$ = $\omega_2$ + $h\dot\omega_2$\\
+    \State \textbf{return} $\theta_1, \theta_2, \omega_1, \omega_2$\\
+\EndProcedure
+\end{algorithmic}
+
+
+
+\newpage
+\subsection{Prototype}
+I have made a quick prototype of the core simulation of the n-body problem and the double-pendulum problem to demonstrate the core movement of the objects within it. I initially wrote in Python as it was easier for me to make a prototype, but the project itself will be in HTML, CSS, and JavaScript.
+\subsubsection{N-body problem}
+\paragraph{Code:}
+\begin{lstlisting}[language=Python]
+from scipy import constants
+import numpy as np
+G = constants.G #newton's gravitational constant
+white = (255,255,255)
+black = (0,0,0)
+red = (255,0,0)
+blue = (0,0,255)
+yellow = (255,255,0) #instantiate some colours for simpler code
+width = 1920
+height = 1080 #height and width of the screen that pygame will use
+
+class Planet(): #planet class that stores all of the information of all the planets
+    def __init__(self, mass: int, position: tuple, velocity: tuple, radius):
+        self.mass = mass #mass of the planet
+        self.position = list(position) #the position of the planet in 2D space stored as a list
+        self.radius = radius #radius of the planet (used for rendering)
+        self.velocity = list(velocity) #velocity of the planet in 2D space stored as component speeds in each dimension
+
+    def updatePosition(self, planets, frameRate):
+        forceX = 0
+        forceY = 0 #instantiate forces in each direction
+        for planet in planets: #loops through all the other planets that are not itself
+            try:
+                distance = ((planet.position[0]-self.position[0])**2 + (planet.position[1]-self.position[1])**2)**0.5 #calculates the distance from one planet to the next planet
+                distanceX = (planet.position[0]-self.position[0]) #gets x component of distance
+                distanceY = (planet.position[1]-self.position[1]) #gets y component of distance
+                minDist = 10 #makes sure there are no divideByZero erros
+                force = 0 #magnitude of the force applied on planet
+                if abs(distance) < minDist:
+                    if distance < 0:
+                        distance = -minDist
+                    else:
+                        distance = minDist #if distance is less than minDist, then it sets it to minDist
+                elif distance >= 0:
+                    force = planet.mass/(distance**2) #uses Newton's law of gravitation to calculate force
+                elif distance < 0:
+                    force = planet.mass/-(distance**2) #sets it to negative if it's negative
+                forceX += force * (distanceX/distance) #gets x component of force
+                forceY += force * (distanceY/distance) #gets y component of force
+            except ZeroDivisionError:
+                pass
+        accelerationX = G * forceX * 1e-8 #calculates acceleration on planet
+        accelerationY = G * forceY * 1e-8
+        self.velocity[0] += accelerationX/frameRate #calculates velocity on planet
+        self.velocity[1] += accelerationY/frameRate
+        self.position[0] += (self.velocity[0]/(frameRate)) #changes the position of the planet
+        self.position[1] += (self.velocity[1]/(frameRate))
+
+    
+mars = Planet(5.97219e24, (540, 260), (0, 325), 500) #instantiates 3 planet objects
+earth = Planet(5.97219e24, (1280,820), (0,-325), 500)
+sun = Planet(5.97219e25, (1060, 540), (0,0), 500)
+
+import pygame
+
+pygame.init()
+
+
+screen = pygame.display.set_mode((width,height)) #instantiates the display
+clock = pygame.time.Clock()
+frameRate = 60
+run = True
+
+while run:
+    clock.tick(frameRate)
+    screen.fill(black)
+
+    earth.updatePosition([sun, mars], frameRate)#update then render the planet on each frame
+    pygame.draw.circle(screen, (blue), earth.position, earth.radius/100)
+    
+    sun.updatePosition([earth, mars], frameRate)
+    pygame.draw.circle(screen, (yellow), sun.position, sun.radius/100)
+    
+    mars.updatePosition([earth, sun], frameRate)
+    pygame.draw.circle(screen, (red), mars.position, mars.radius/100)
+
+    for event in pygame.event.get():#stops simulation if you exit the screen
+        if event.type == pygame.QUIT:
+            run = False
+    
+    pygame.display.flip()
+pygame.quit()
+
+\end{lstlisting}
+
+
+\subsubsection{Double-pendulum problem}
+\paragraph{Code:}
+\begin{lstlisting}[language=Python]
+from scipy import constants
+import math
+import pygame
+
+g = constants.G
+pi = constants.pi
+white = (255,255,255)
+black = (0,0,0)
+width = 800
+height = 400 #screen size
+h = 0.2 #step size
+stepsPerFrame = 1
+timeScale = 100 #speed of simulation
+
+m1 = 5;   #mass first bob
+m2 = 5;   #mass second bob
+l1 = 100 #length first rod
+l2 = 100 #length second rod
+th1 = 90 * (pi / 180) #angle first
+th2 = 30 * (pi / 180) #angle second
+om1 = 0  #angular velocity first
+om2 = 0  #angular velocity second
+
+x0 = width/2 #base points
+y0 = height/5
+
+#clamps angles for propper size
+def normalizeAngle(angle):
+    angle %= (2*pi)
+    if angle > pi:
+        angle -= 2*pi
+    elif angle < pi:
+        angle += 2*pi
+    return angle
+
+#differential equation
+def differential(th1, th2, om1, om2):
+    delta = th2-th1
+    den1 = (m1 + m2) * l1 - m2 * l1 * math.cos(delta) * math.cos(delta)
+    den2 = (l2 / l1) * den1
+    dotom1 = ((m2 * l2 * om2 * om2 * math.sin(delta) * math.cos(delta)
+        + m2 * g * math.sin(th2) * math.cos(delta)
+        + m2 * l2 * om2 * om2 * math.sin(delta)
+        - (m1 + m2) * g * math.sin(th1))
+        / den1)
+    dotom2 = ((-l1 / l2) * om1 * om1 * math.sin(delta) * math.cos(delta)
+        + (m1 + m2) * g * math.sin(th1) * math.cos(delta)
+        - (m1 + m2) * l1 * om1 * om1 * math.sin(delta)
+        - (m1 + m2) * g * math.sin(th2))/ den2
+    return [om1, om2, dotom1, dotom2]
+
+#numerical estimation of next value
+def rk4Integration(h, th1, th2, om1, om2):
+    k1_th1, k1_th2, k1_om1, k1_om2 = differential(th1, th2, om1, om2)
+    k2_th1, k2_th2, k2_om1, k2_om2 = differential(
+        th1 + 0.5 * h * k1_th1,
+        th2 + 0.5 * h * k1_th2,
+        om1 + 0.5 * h * k1_om1,
+        om2 + 0.5 * h * k1_om2)
+    k3_th1, k3_th2, k3_om1, k3_om2 = differential(
+        th1 + 0.5 * h * k2_th1,
+        th2 + 0.5 * h * k2_th2,
+        om1 + 0.5 * h * k2_om1,
+        om2 + 0.5 * h * k2_om2)
+    k4_th1, k4_th2, k4_om1, k4_om2 = differential(
+        th1 + h * k3_th1,
+        th2 + h * k3_th2,
+        om1 + h * k3_om1,
+        om2 + h * k3_om2)
+    
+    dth1 = (h / 6) * (k1_th1 + 2 * k2_th1 + 2 * k3_th1 + k4_th1)
+    dth2 = (h / 6) * (k1_th2 + 2 * k2_th2 + 2 * k3_th2 + k4_th2)
+    dom1 = (h / 6) * (k1_om1 + 2 * k2_om1 + 2 * k3_om1 + k4_om1)
+    dom2 = (h / 6) * (k1_om2 + 2 * k2_om2 + 2 * k3_om2 + k4_om2)
+
+    print(dth1, dth2, dom1, dom2)
+
+    return dth1, dth2, dom1, dom2
+
+#initialises pygame
+pygame.init()
+screen = pygame.display.set_mode((width,height)) #instantiates the display
+clock = pygame.time.Clock()
+frameRate = 60
+run = True
+
+lastTime = 0
+while run:
+    clock.tick(frameRate)
+    screen.fill(white)
+
+    #allows for more accurate running
+    stepsForThisFrame = int(stepsPerFrame * timeScale)
+    for x in range(stepsForThisFrame):
+        (dth1, dth2, dom1, dom2) = rk4Integration(h, th1, th2, om1, om2)
+        th1 += dth1
+        th2 += dth2
+        om1 += dom1
+        om2 += dom2
+
+    #calculates position of pendulum arms
+    x1 = x0 + l1 * math.sin(normalizeAngle(th1))
+    y1 = y0 + l1 * math.cos(normalizeAngle(th1))
+    x2 = x1 + l2 * math.sin(normalizeAngle(th2))
+    y2 = y1 + l2 * math.cos(normalizeAngle(th2))
+
+    #draws to the screen
+    pygame.draw.lines(screen, black, False, [(x0,y0),(x1,y1),(x2,y2)])
+
+    for event in pygame.event.get():#stops simulation if you exit the screen
+        if event.type == pygame.QUIT:
+            run = False
+    
+    pygame.display.flip()
+pygame.quit()
+
+\end{lstlisting}
+
+
+\newpage
+\section{Technical Solution}
+
+\subsection{Contents}
+
+Technical skills used
+
+Coding styles
+
+\subsection{Directory}
+\begin{lstlisting}
+.
+|-- README.md
+|-- app.js
+|-- package-lock.json
+|-- package.json
+|-- public
+|   |-- css
+|   |   |-- style.css
+|   |-- js
+|       |-- graph.js
+|       |-- main.js
+|       |-- pendulum.js
+|-- routes
+|   |-- index.js
+|-- views
+    |-- index.pug
+\end{lstlisting}
+
+
+
+\subsection{Source code}
+\subsubsection{index.pug}
+Pug is a JavaScript language that compiles into HTML. It makes it simpler and easier to write. Instead of using closing tags it uses indentation to close opening tags. This is the main web-page which is displayed. It contains a grid of all the different elements. 
+\paragraph{Code:}
+\begin{lstlisting}[language=pug]
+doctype html
+head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Double Pendulum Problem
+    link(rel='stylesheet' href='/css/style.css')
+
+.grid-container 
+    .grid-header
+        h1 Double pendulum
+
+    canvas.grid-pendulum#canvasPendulum(width='900px' height='900px')
+
+
+    canvas.grid-energy#canvasEnergy(width='250px' height='500px')
+
+    .grid-control
+        h2 Gravity
+        input#gravSlider(type='range' min='0' max='30' step='0.01' value='9.81' oninput='gravAmount.value=gravSlider.value')
+        input#gravAmount(type='text' min='0' max='30' step='0.01' value='9.81' oninput='gravSlider.value=gravAmount.value')
+        h2 m1
+        input#m1Slider(type='range' min='2' max='20' step='0.01' value='5' oninput='m1Amount.value=m1Slider.value')
+        input#m1Amount(type='text' min='2' max='20' step='0.01' value='5' oninput='m1Slider.value=m1Amount.value')
+        h2 m2
+        input#m2Slider(type='range' min='2' max='20' step='0.01' value='5' oninput='m2Amount.value=m2Slider.value')
+        input#m2Amount(type='text' min='2' max='20' step='0.01' value='5' oninput='m2Slider.value=m2Amount.value')
+        h2 l1
+        input#l1Slider(type='range' min='5' max='500' step='0.01' value='100' oninput='l1Amount.value=l1Slider.value')
+        input#l1Amount(type='text' min='5' max='500' step='0.01' value='100' oninput='l1Slider.value=l1Amount.value')
+        h2 l2
+        input#l2Slider(type='range' min='5' max='500' step='0.01' value='100' oninput='l2Amount.value=l2Slider.value')
+        input#l2Amount(type='text' min='5' max='500' step='0.01' value='100' oninput='l2Slider.value=l2Amount.value')
+        h2 h
+        input#hSlider(type='range' min='0.01' max='1' step='0.01' value='0.25' oninput='hAmount.value=hSlider.value')
+        input#hAmount(type='text' min='0.01' max='1' step='0.01' value='0.25' oninput='hSlider.value=hAmount.value')
+        
+        div(class="addPreset")
+            h2 Add a preset
+            form(action="/addPreset", method="post")
+
+                .formGroup
+                    label(for="name") Name: 
+                    input(type="text", id="name", placeholder="name", name="name")
+
+                .formGroup
+                    label(for="th1") th1: 
+                    input(type="text", id="th1", placeholder="th1", name="th1")
+
+                .formGroup
+                    label(for="th2") th2: 
+                    input(type="text", id="th2", placeholder="th2", name="th2")
+
+                .formGroup
+                    label(for="om1") om1: 
+                    input(type="text", id="om1", placeholder="om1", name="om1")
+
+                .formGroup
+                    label(for="om2") om2: 
+                    input(type="text", id="om2", placeholder="om2", name="om2")
+
+                button(type="submit") Submit
+
+        .presetSelect
+            h2 Select a Preset
+            select(name="presetSelect" id="presetSelect")
+                each preset in presets 
+                    option(value=preset) #{preset.name}
+
+            
+        h2 y-variable
+        select#yGraphSelect
+            option(value='graphHistoryTh1') Th1
+            option(value='graphHistoryTh2') Th2
+            option(value='graphHistoryOm1') Om1
+            option(value='graphHistoryOm2') Om2
+        h2 x-variable
+        select#xGraphSelect
+            option(value='graphHistoryTh2') Th2
+            option(value='graphHistoryTh1') Th1
+            option(value='graphHistoryOm1') Om1
+            option(value='graphHistoryOm2') Om2
+            option(value='graphHistoryTime') Time
+        h2 Integration method
+        select#integrationSelect
+            option(value='RK4') RK4
+            option(value='Euler') Euler
+        h2 Pause
+        input#pauseCheck(type='checkbox')
+        h2 Restart Graph
+        input#restartButton(type='button')
+        h2 Restart Variables and Graph
+        input#resetButton(type='button')
+
+
+    canvas.grid-graph#canvasGraph(width='600px' height='350px')
+
+
+script(type='module' src='/js/graph.js')
+script(type='module' src='/js/pendulum.js')
+script(type='module' src='/js/main.js')
+\end{lstlisting}
+
+
+
+\subsubsection{style.css}
+This is the style sheet for the web-page. It defines the sizes of all the grids and makes the controlling group scrollable so it is always on the page.
+\paragraph{Code:}
+\begin{lstlisting}
+.formGroup{
+    margin-bottom: 10px;
+}
+.grid-container {
+    display: grid;
+    column-gap: 20px;
+    row-gap: 20px;
+}
+.grid-header {
+    grid-column: 1 / 8;
+    grid-row: 1 / span 1;
+}
+.grid-pendulum {
+    grid-column: 1 / 5;
+    grid-row: 2 / 7;
+}
+.grid-energy {
+    grid-column: 4 / 6;
+    grid-row: 2 / 5;
+}
+.grid-control {
+    height: 500px;
+    overflow: auto;
+    border: 1px solid;
+    grid-column: 6 / 8;
+    grid-row: 2 / 5;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+.grid-graph {
+    grid-column: 4 / 8;
+    grid-row: 5 / 7;
+}
+\end{lstlisting}
+
+
+
+\subsubsection{app.js}
+This is the entry point of the web page on the server-side. It compiles the pug page, sends GET and POST requests to index.js, and defines which port the web-page will run on.
+\paragraph{Code:}
+\begin{lstlisting}[language=JavaScript]
+import express from 'express';
+import path from 'path';
+import { fileURLToPath  } from 'url';
+import { dirname } from 'path';
+import indexRouter from './routes/index.js';
+
+// Set dirname to configure requests
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Initialise parameters for app
+const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.set('view engine', 'pug');
+app.use(express.static(path.join(__dirname, '/public')));
+app.use('/', indexRouter);
+
+// Set the port used
+const PORT = process.env.PORT || 3000;
+
+// Confirm server is running
+app.listen(PORT, function() {
+    console.log('Server is running on port '+ PORT);
+});
+\end{lstlisting}
+
+
+
+\subsubsection{index.js}
+This connects to the MongoDB and handles all of the POST and GET requests. GET requests just return the index.pug page with the presets loaded on top. POST requests add the presets to the database and send the user back to the page.
+\paragraph{Code:}
+\begin{lstlisting}[language=JavaScript]
+
+import express from 'express';
+import { MongoClient } from 'mongodb';
+import readline from 'readline';
+
+// Get the password of the mongoDB database
+let password;
+const read = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+read.question("Password: ", function(answer) {
+    password = answer;
+    read.close();
+})
+
+// Set up router
+const router = express.Router();
+
+// Set up client with mongoDB database
+const client = new MongoClient(`mongodb+srv://dbo:\${password}@physteach.dl3xqy3.mongodb.net/?retryWrites=true&w=majority`)
+
+// Gets the presets from the database
+async function GetPresets() {
+    await client.connect();
+    const dbo = client.db('presets');
+    return await dbo.collection('preset-collection').find({}).toArray();
+}
+
+// Adds presets to database
+async function InsertPreset(name, th1, th2, om1, om2) {
+    await client.connect();
+    let dbo = client.db('presets'); 
+    await dbo.collection('preset-collection').insertOne({name, th1, th2, om1, om2});
+}
+
+// General get request handling
+router.get('/', async function (req, res) {
+    let presets = await GetPresets();
+    res.render('index', {presets});
+});
+
+// Handles post requests for adding the presets
+router.post('/addPreset', function (req, res){
+    (async function () {
+        await InsertPreset(req.body.name, req.body.th1, req.body.th2, req.body.om1, req.body.om2);
+        res.redirect('/');
+    })();
+});
+
+// Export router to app.js
+export default router;
+
+\end{lstlisting}
+
+
+
+\subsubsection{main.js}
+The main code that runs on the pendulum on the client side. This is sent with the html and other JavaScript program. It holds all the variables and the functions that control the variables. It also initialises the canvases and it has the main running loop calling functions from Pendulum.js and Graph.js.
+\paragraph{Code:}
+\begin{lstlisting}[language=JavaScript]
+
+// Import functions from other files
+import {drawGraph, resetHistories, updateHistories, drawClosestPoint} from "./graph.js";
+import {drawPendulum, updatePendulum, setPendulumPosition, drawEnergyBar, updatePosHistories, getMaxEnergy, resetPendHistories} from "./pendulum.js";
+
+// Declare variables for exporting
+let g, m1, m2, l1, l2;
+
+function start(){
+    //Initialise inputs
+    const gravSlider = document.getElementById('gravSlider');
+    const m1Slider = document.getElementById('m1Slider');
+    const m2Slider = document.getElementById('m2Slider');
+    const l1Slider = document.getElementById('l1Slider');
+    const l2Slider = document.getElementById('l2Slider');
+    const hSlider = document.getElementById('hSlider');
+    const gravAmount = document.getElementById('gravAmount');
+    const m1Amount = document.getElementById('m1Amount');
+    const m2Amount = document.getElementById('m2Amount');
+    const l1Amount = document.getElementById('l1Amount');
+    const l2Amount = document.getElementById('l2Amount');
+    const hAmount = document.getElementById('hAmount');
+    const pauseCheck = document.getElementById('pauseCheck');
+    const restartButton = document.getElementById('restartButton')
+    const resetButton = document.getElementById('resetButton');
+    const yGraphSelect = document.getElementById('yGraphSelect');
+    const xGraphSelect = document.getElementById('xGraphSelect');
+    const integrationSelect = document.getElementById('integrationSelect');
+    const presetSelect = document.getElementById('presetSelect');
+
+    //Run reset scrips when these buttons are clicked on the html
+    restartButton.addEventListener('click', RestartGraph);
+    resetButton.addEventListener('click', RestartVariablesAndGraph);
+
+    presetSelect.addEventListener("change", function(e){
+        const preset = JSON.parse(e.target.value);
+        setAngleParams(preset.th1, preset.th2, preset.om1, preset.om2);
+        maxLabel = getMaxEnergy(th1, th2, om1, om2);
+    });
+
+    //Initialise starting parameters
+    g = parseFloat(gravSlider.value);
+    m1 = parseFloat(m1Slider.value);
+    m2 = parseFloat(m2Slider.value);
+    l1 = parseFloat(l1Slider.value);
+    l2 = parseFloat(l2Slider.value);
+    let h = parseFloat(hSlider.value);
+    let th1 = 90 * (Math.PI / 180);
+    let th2 = 30 * (Math.PI / 180);
+    let om1 = 0;
+    let om2 = 0;
+    let maxLabel = getMaxEnergy(th1, th2, om1, om2);
+
+    //Canvas setup for pendulum
+    const desiredFPS = 60;
+    let canvasPendulum = document.querySelector('#canvasPendulum');
+    let ctxPendulum = canvasPendulum.getContext('2d');
+    let widthPendulum = canvasPendulum.width;
+    let heightPendulum = canvasPendulum.height;
+
+    // Changes position of pendulum when you click on it
+    canvasPendulum.addEventListener("click", function(event){
+        [th1, th2, om1, om2] = setPendulumPosition(canvasPendulum, event, om1, om2);
+        maxLabel = getMaxEnergy(th1, th2, om1, om2);
+
+    })
+
+    //Canvas setup for graph
+    let canvasGraph = document.querySelector('#canvasGraph');
+    let ctxGraph = canvasGraph.getContext('2d');
+    ctxGraph.font = "16px Arial";
+    ctxGraph.textAlign = "center";
+    let widthGraph = canvasGraph.width;
+    let heightGraph = canvasGraph.height;
+
+    // Checks when you click on the graph and does a function
+    canvasGraph.addEventListener("click", function(event){
+        if (pauseCheck.checked == true){
+            drawClosestPoint(canvasGraph, event, xGraph, yGraph, widthGraph, heightGraph);
+        } 
+    });
+
+    //Axes selection variables
+    let yGraph = yGraphSelect.value;
+    let xGraph = xGraphSelect.value;
+
+    // Canvas setup for energy bar
+    let canvasEnergy = document.querySelector('#canvasEnergy');
+    let ctxEnergy = canvasEnergy.getContext('2d');
+    ctxEnergy.font = "16px Arial";
+    ctxEnergy.textAlign = "center";
+    let widthEnergy = canvasEnergy.width;
+    let heightEnergy = canvasEnergy.height;
+
+    //Reset and restart functions
+    function RestartGraph(){
+        th1 = 90 * (Math.PI / 180);
+        th2 = 30 * (Math.PI / 180);
+        om1 = 0;
+        om2 = 0;
+        resetHistories()
+        resetPendHistories()
+        }
+
+    function RestartVariablesAndGraph(){
+        g = 9.81;
+        gravSlider.value = 9.81;
+        gravAmount.value = 9.81;
+        h = 0.25;
+        hSlider.value = 0.25;
+        hAmount.value = 0.25;
+        m1 = 5;
+        m1Slider.value = 5;
+        m1Amount.value = 5;
+        m2 = 5;
+        m2Slider.value = 5;
+        m2Amount.value = 5;
+        l1 = 100;
+        l1Slider.value = 100;
+        l1Amount.value = 100;
+        l2 = 100;
+        l2Slider.value = 100;
+        l2Amount.value = 100;
+        RestartGraph()
+        }
+
+    // Updates variables to sliders on the page
+    function updateVariables(){
+        g = gravSlider.value;
+        m1 = m1Slider.value;
+        m2 = m2Slider.value;
+        l1 = l1Slider.value;
+        l2 = l2Slider.value;
+        h = hSlider.value;
+        yGraph = yGraphSelect.value;
+        xGraph = xGraphSelect.value;
+        widthGraph = canvasGraph.width;
+        heightGraph = canvasGraph.height;
+        widthPendulum = canvasPendulum.width;
+        heightPendulum = canvasPendulum.height;
+    }
+
+    // Updates angles
+    function setAngleParams(newTh1, newTh2, newOm1, newOm2){
+        th1 = parseFloat(newTh1) * (Math.PI / 180);
+        th2 = parseFloat(newTh2) * (Math.PI / 180);
+        om1 = parseFloat(newOm1);
+        om2 = parseFloat(newOm2);
+    };
+
+    // Variables for running
+    const timePerFrame = 1000/desiredFPS;
+    let totalFrames = 0;
+    let previousTime = 0;
+
+    function run(currentTime){
+
+        requestAnimationFrame(run); 
+
+        const deltaTime = currentTime - previousTime;
+
+        if (deltaTime >= timePerFrame) {
+
+            previousTime = currentTime;
+
+            updateVariables();
+
+            let [x, y] = drawPendulum(ctxPendulum, th1, th2, widthPendulum, heightPendulum);
+
+            if (pauseCheck.checked == false){
+
+                [th1, th2, om1, om2] = updatePendulum(integrationSelect.value, h, th1, th2, om1, om2);
+
+                totalFrames++;
+
+                updateHistories(th1, th2, om1, om2, totalFrames);
+
+                updatePosHistories(x, y);
+
+            }
+
+            drawEnergyBar(ctxEnergy, widthEnergy, heightEnergy, th1, th2, om1, om2, maxLabel);
+
+            drawGraph(ctxGraph, xGraph, yGraph, widthGraph, heightGraph, pauseCheck);
+
+        }
+    }
+
+    requestAnimationFrame(run);
+
+};
+
+// Only start running the file when teh DOM has finished loading.
+document.addEventListener('DOMContentLoaded', start);
+
+// Get and set pendulum parameters
+export function getParams() {
+    g = parseFloat(g);
+    m1 = parseFloat(m1);
+    m2 = parseFloat(m2);
+    l1 = parseFloat(l1);
+    l2 = parseFloat(l2);
+    return { g, m1, m2, l1, l2 };
+};
+
+// Set the parameters within main.js
+export function setParams({ newG, newM1, newM2, newL1, newL2 }) {
+    g = newG;
+    m1 = newM1;
+    m2 = newM2;
+    l1 = newL1;
+    l2 = newL2;
+};
+\end{lstlisting}
+
+
+
+\subsubsection{pendulum.js}
+This has all the code for the pendulum canvas and the energy bar canvas. It also stores the histories of x and y positions to draw the path that the pendulum has gone. It has the differential equation, numerical integration, energy calculation, and drawing functions.
+\paragraph{Code:}
+\begin{lstlisting}[language=JavaScript]
+
+import { getParams } from "./main.js";
+
+// Constants for pendulum
+const stepsPerFrame = 10;
+const timeScale = 100;
+const maxPosPoints = 200;
+
+// Constants for energy bars
+const Xpadding = 75;
+const Ypadding = 10;
+const numYPoints = 5;
+
+// Pendulum position histories
+let xHistories = [];
+let yHistories = [];
+
+export function resetPendHistories(){
+    xHistories = [];
+    yHistories = [];
+}
+
+// Update histories of positions
+export function updatePosHistories(x,y){
+    xHistories.push(x);
+    yHistories.push(y);
+
+    // Limit histoy to maxPosPoints
+    while (xHistories.length > maxPosPoints){
+        xHistories.shift();
+        yHistories.shift();
+    }
+}
+
+//Differential equation for this model
+function differential(th1, th2, om1, om2) {
+    const { g, m1, m2, l1, l2 } = getParams();
+    const delta = th2 - th1;  // Difference in angles
+    const den1 = (m1 + m2) * l1 - m2 * l1 * Math.cos(delta) * Math.cos(delta);
+    const den2 = (l2 / l1) * den1;
+
+    // Computing the derivatives
+    const dotom1 = ((m2 * l2 * om2 * om2 * Math.sin(delta) * Math.cos(delta)
+        + m2 * g * Math.sin(th2) * Math.cos(delta)
+        + m2 * l2 * om2 * om2 * Math.sin(delta)
+        - (m1 + m2) * g * Math.sin(th1))
+        / den1);
+
+    const dotom2 = ((-l1 / l2) * om1 * om1 * Math.sin(delta) * Math.cos(delta)
+        + (m1 + m2) * g * Math.sin(th1) * Math.cos(delta)
+        - (m1 + m2) * l1 * om1 * om1 * Math.sin(delta)
+        - (m1 + m2) * g * Math.sin(th2))
+        / den2;
+
+    return [om1, om2, dotom1, dotom2];
+}
+
+//Integration method
+function Integration(method, h, th1, th2, om1, om2) {
+    if (method === 'RK4'){
+        let [k1_th1, k1_th2, k1_om1, k1_om2] = differential(th1, th2, om1, om2);
+        let [k2_th1, k2_th2, k2_om1, k2_om2] = differential(
+            th1 + 0.5 * h * k1_th1,
+            th2 + 0.5 * h * k1_th2,
+            om1 + 0.5 * h * k1_om1,
+            om2 + 0.5 * h * k1_om2
+        );
+        let [k3_th1, k3_th2, k3_om1, k3_om2] = differential(
+            th1 + 0.5 * h * k2_th1,
+            th2 + 0.5 * h * k2_th2,
+            om1 + 0.5 * h * k2_om1,
+            om2 + 0.5 * h * k2_om2
+        );
+        let [k4_th1, k4_th2, k4_om1, k4_om2] = differential(
+            th1 + h * k3_th1,
+            th2 + h * k3_th2,
+            om1 + h * k3_om1,
+            om2 + h * k3_om2
+        );
+
+        th1 += (h / 6) * (k1_th1 + 2 * k2_th1 + 2 * k3_th1 + k4_th1);
+        th2 += (h / 6) * (k1_th2 + 2 * k2_th2 + 2 * k3_th2 + k4_th2);
+        om1 += (h / 6) * (k1_om1 + 2 * k2_om1 + 2 * k3_om1 + k4_om1);
+        om2 += (h / 6) * (k1_om2 + 2 * k2_om2 + 2 * k3_om2 + k4_om2);
+
+        return [th1, th2, om1, om2];
+
+
+    } else if (method === 'Euler'){
+        let [dth1, dth2, dom1, dom2] = differential(th1, th2, om1, om2);
+
+        th1 += h*dth1;
+        th2 += h*dth2;
+        om1 += h*dom1;
+        om2 += h*dom2;
+
+        return [th1, th2, om1, om2];
+    }
+}
+
+//Draws the pendulum to the canvas
+export function drawPendulum(ctxPendulum, th1, th2, widthPendulum, heightPendulum) {
+
+    const { g, m1, m2, l1, l2 } = getParams();
+    
+    ctxPendulum.clearRect(0,0, widthPendulum, heightPendulum);
+
+    //Calculate positions of cirlces
+    let x0 = widthPendulum /2;
+    let y0 = heightPendulum / 2;
+    let x1 = x0 + l1 * Math.sin(th1);
+    let y1 = y0 + l1 * Math.cos(th1);
+    let x2 = x1 + l2 * Math.sin(th2);
+    let y2 = y1 + l2 * Math.cos(th2);
+
+    //Draw circles
+    ctxPendulum.beginPath();
+    ctxPendulum.arc(x1, y1, m1, 0, 2* Math.PI);
+    ctxPendulum.arc(x2, y2, m2, 0, 2 * Math.PI);
+    ctxPendulum.fillStyle = "#000";
+    ctxPendulum.fill();
+
+    //Draw lines connecting them
+    ctxPendulum.beginPath();
+    ctxPendulum.moveTo(x0, y0);
+    ctxPendulum.lineTo(x1, y1);
+    ctxPendulum.moveTo(x1, y1);
+    ctxPendulum.lineTo(x2, y2);
+    ctxPendulum.strokeStyle = "#000";
+    ctxPendulum.stroke();
+
+    // Draw lines of the path
+    ctxPendulum.strokeStyle = "red";
+    ctxPendulum.beginPath();
+    ctxPendulum.moveTo(xHistories[0], yHistories[0]);
+    for (let i = 0; i <= xHistories.length; i++) {
+        ctxPendulum.lineTo(xHistories[i], yHistories[i]);
+        ctxPendulum.moveTo(xHistories[i], yHistories[i]);
+    }
+    ctxPendulum.stroke();
+    ctxPendulum.strokeStyle = "black";
+
+    return [x2, y2];
+}
+
+//Updates pendulum based on how long has passed
+export function updatePendulum(method, h, th1, th2, om1, om2){
+
+    [th1, th2, om1, om2] = Integration(method, h, th1, th2, om1, om2);
+    
+    return [th1, th2, om1, om2];
+}
+
+// Returns the points of intersection of 2 circles to find middle point
+function findCircleIntersections(x1,y1,r1, x2,y2,r2) {
+
+    const d = Math.hypot(x2-x1, y2-y1);
+  
+    if ((d >= (r1 + r2)) || (d <= Math.abs(r1 - r2))) {
+      return false; // No intersection
+    }
+  
+    const theta = Math.atan2(y2 - y1, x2 - x1);
+    const a = (r1 * r1 - r2 * r2 + d * d) / (2 * d);
+    const h = Math.sqrt(r1 * r1 - a * a);
+  
+    const x3 = x1 + a * Math.cos(theta);
+    const y3 = y1 + a * Math.sin(theta);
+  
+    const x4 = x3 + h * Math.cos(theta + Math.PI / 2);
+    const y4 = y3 + h * Math.sin(theta + Math.PI / 2);
+  
+    // Arbitrarily returns to positive value and doesn't calculate other intersection
+    // As it is not needed
+    return [x4, y4];
+  }
+
+export function setPendulumPosition(canvas, event, th1, th2, om1, om2){
+    const { g, m1, m2, l1, l2 } = getParams();
+
+    // Calculates the x and y position of where has been clicked
+    const xClick = event.offsetY;
+    const yClick = event.offsetX;
+
+    const origX = canvas.width/2;
+    const origY = canvas.height/2;
+
+    const point = findCircleIntersections(origX, origY, l1, xClick, yClick, l2);
+
+    // Calculates th1 and th2 that results in these points being chosen
+    if (point != false){
+        th1 = Math.atan2(point[1]-origY, point[0]-origX);
+        th2 = Math.atan2(yClick-point[1], xClick-point[0]);
+
+        return [th1, th2, 0, 0];
+    }
+
+    return [th1,th2, om1, om2];
+}
+
+// Returns sum of kinetic energies of both pendulums
+function getKineticEnergy(om1, om2){
+    const { g, m1, m2, l1, l2 } = getParams();
+
+    let KE = 0.5 * m1 * om1*om1*l1*l1 + 0.5 * m2 * om2*om2*l2*l2;
+
+    return KE;
+}
+
+// Returns sum of potential energies of both pendulums
+function getPotentialEnergy(th1, th2){
+    const { g, m1, m2, l1, l2 } = getParams();
+
+    const h1 = l1 + l2 - l1 * Math.cos(th1);
+    const h2 = h1 - l2 * Math.cos(th2);
+
+    const PE = m1 * g * h1 + m2 * g * h2;
+
+    return PE;
+}
+
+// Returns the maximum energy for given parameters (updates everytime parameters change)
+export function getMaxEnergy(th1, th2, om1, om2){
+    return getKineticEnergy(om1, om2) + getPotentialEnergy(th1, th2);
+}
+
+// Draws the energy bar to the screen
+export function drawEnergyBar(ctxEnergy, widthEnergy, heightEnergy, th1, th2, om1, om2, maxLabel){
+    const { g, m1, m2, l1, l2 } = getParams();
+    ctxEnergy.clearRect(0,0, widthEnergy, heightEnergy);
+
+    const paddedHeightEnergy = heightEnergy - 2 * Ypadding;
+    const paddedWidthEnergy = widthEnergy - 2 * Xpadding;
+
+    const KE = getKineticEnergy(om1, om2);
+    const PE = getPotentialEnergy(th1, th2);
+
+    const maxE = KE + PE;
+
+    // Draw the boxes to display energy
+    ctxEnergy.fillStyle = "red";
+    ctxEnergy.fillRect(Xpadding, paddedHeightEnergy*(1-KE/maxE) + Ypadding, paddedWidthEnergy, paddedHeightEnergy*KE/maxE);
+    ctxEnergy.fillStyle = "blue";
+    ctxEnergy.fillRect(Xpadding, Ypadding, paddedWidthEnergy, paddedHeightEnergy*PE/maxE);
+
+    // Draw surrounding frame
+    ctxEnergy.strokeRect(Xpadding, paddedHeightEnergy*(1-KE/maxE) + Ypadding, paddedWidthEnergy, paddedHeightEnergy*KE/maxE)
+    ctxEnergy.strokeRect(Xpadding, Ypadding, paddedWidthEnergy, paddedHeightEnergy*PE/maxE);
+
+    // Draw labels on each bar
+    ctxEnergy.fillStyle = "black";
+    ctxEnergy.fillText("KE (J)", Xpadding/2, Xpadding);
+    ctxEnergy.fillText("PE (J)", widthEnergy - Xpadding/2, Xpadding);
+
+    for (let i = 0; i <= numYPoints; i++) {
+
+        // Get the position and value for labels
+        let yPos = i*paddedHeightEnergy/numYPoints;
+        let Elabel = +((numYPoints-i)*maxLabel/numYPoints).toPrecision(2);
+
+        // Draw tick marks on both sides
+        ctxEnergy.beginPath();
+        ctxEnergy.moveTo(Xpadding, yPos + Ypadding);
+        ctxEnergy.lineTo(Xpadding-5, yPos + Ypadding);
+        ctxEnergy.stroke();
+
+        // Draw data points next to tick marks
+        ctxEnergy.textAlign = "right";
+        ctxEnergy.fillText(Elabel, Xpadding-10, yPos + Ypadding +5);
+        ctxEnergy.textAlign = "center";
+
+    }
+
+}
+
+\end{lstlisting}
+
+
+
+\subsubsection{graph.js}
+This code governs how the graph is drawn and stores the variables for all the different graphs that you can choose. It also draws the graph and controls when the graph is clicked to draw the closest point.
+\paragraph{Code:}
+\begin{lstlisting}[language=JavaScript]
+
+// Graph constants
+const padding = 5;
+const numXTimePoints = 5;
+const maxGraphPoints = 200;
+
+//Graph histories
+let graphHistoryTh1 = [];
+let graphHistoryTh2 = [];
+let graphHistoryOm1 = [];
+let graphHistoryOm2 = [];
+let graphHistoryTime = [];
+let drawPoint = false;
+let closestPoint = [0,0];
+
+//Clamp angles between pi and -pi
+function normaliseAngle(angle){
+    angle = angle % (2 * Math.PI);
+    if (angle > Math.PI) {
+        angle -= 2 * Math.PI;
+    } else if (angle < -Math.PI) {
+        angle += 2 * Math.PI;
+    }
+    return angle;
+}
+
+// Update the history lists to add the latest values
+export function updateHistories(th1, th2, om1, om2, totalFrames){
+    graphHistoryTh1.push(normaliseAngle(th1));
+    graphHistoryTh2.push(normaliseAngle(th2));
+    graphHistoryOm1.push(normaliseAngle(om1));
+    graphHistoryOm2.push(normaliseAngle(om2));
+    graphHistoryTime.push(totalFrames);
+
+    // Limit the history to maxGraphPoints
+    while (graphHistoryTh1.length > maxGraphPoints) {
+        graphHistoryTh1.shift();
+        graphHistoryTh2.shift();
+        graphHistoryOm1.shift();
+        graphHistoryOm2.shift();
+        graphHistoryTime.shift();
+    }
+}
+
+// Empty the histories to reset the graph
+export function resetHistories(){
+    graphHistoryTh1 = [];
+    graphHistoryTh2 = [];
+    graphHistoryOm1 = [];
+    graphHistoryOm2 = [];
+}
+
+// Gets the smallest value in an array of dictionaries by a certain key
+const minBy = (arr, key) => arr.reduce((a,b) => a[key] < b[key] ? a:b, {});
+
+// Uses a KNN to get cloest point and returns it.
+export function drawClosestPoint(canvasGraph, event, xGraph, yGraph, widthGraph, heightGraph){
+
+    // Calculates the x and y position of where has been clicked
+    const rect = canvasGraph.getBoundingClientRect();
+    const xClick = event.clientX - rect.left;
+    const yClick = event.clientY - rect.top;
+
+    // Calculate padding to check if click on graph
+    let paddedHeightGraph = heightGraph * (1 - padding/100);
+    let paddedWidthGraph = widthGraph * (1 - padding/100); 
+
+    //Scaling
+    let yScale = paddedHeightGraph / (2 * Math.PI);
+    let xScale = paddedWidthGraph / (2 * Math.PI);
+
+    // Works if click in graph
+    if ((xClick > (widthGraph-paddedWidthGraph)/2) && (xClick < paddedWidthGraph + (widthGraph-paddedWidthGraph)/2) && 
+    (yClick > (heightGraph - paddedHeightGraph)/2) && (yClick < paddedHeightGraph + (heightGraph-paddedHeightGraph)/2)){
+            
+        // Get xy data
+        let xData = eval(xGraph);
+        let yData = eval(yGraph);
+
+        if (xGraph != 'graphHistoryTime'){
+            let xPoint = -(xClick / xScale - Math.PI);
+            let yPoint = -(yClick / yScale - Math.PI);
+
+            let distances = [];
+            for (let i = 0; i < xData.length; i++){
+                let distance = Math.sqrt((xPoint-xData[i])**2 + (yPoint-yData[i])**2);
+                distances.push({'distance': distance, 'point': [xData[i-1], yData[i-1]]});
+            }
+        
+            let closest = minBy(distances, 'distance')
+
+            closestPoint = closest;
+
+            drawPoint = true;
+            
+    }
+
+    }
+
+
+}
+
+// Draws the graph to the canvas
+export function drawGraph(ctxGraph, xGraph, yGraph, widthGraph, heightGraph, pauseCheck) {
+
+    ctxGraph.clearRect(0,0, widthGraph, heightGraph);
+
+    // Calculate padding so graph items don't go over the edge
+    let paddedHeightGraph = heightGraph * (1 - padding/100);
+    let paddedWidthGraph = widthGraph * (1 - padding/100); 
+
+    //Scaling
+    let yScale = paddedHeightGraph / (2 * Math.PI);
+    let xScale = paddedWidthGraph / (2 * Math.PI);
+
+    // Get xy data
+    let xData = eval(xGraph);
+    let yData = eval(yGraph);
+
+    // Draw axes
+    ctxGraph.beginPath();
+    ctxGraph.moveTo(0, heightGraph / 2);
+    ctxGraph.lineTo(widthGraph, heightGraph / 2);
+    ctxGraph.moveTo(widthGraph / 2, 0);
+    ctxGraph.lineTo(widthGraph / 2, heightGraph);
+    ctxGraph.strokeStyle = "#000000";
+    ctxGraph.stroke();
+
+    //+-pi on y scale
+    ctxGraph.fillText("\u03C0", widthGraph/2-15, heightGraph/2 - Math.PI*yScale + 5);
+    ctxGraph.fillText("-\u03C0", widthGraph/2-15, heightGraph/2 + Math.PI*yScale + 5);
+
+    //Tick marks for y axes
+    ctxGraph.beginPath();
+    ctxGraph.moveTo(widthGraph/2 - 5, heightGraph/2 - Math.PI*yScale);
+    ctxGraph.lineTo(widthGraph/2, heightGraph/2 - Math.PI*yScale);
+    ctxGraph.moveTo(widthGraph/2 - 5, heightGraph/2 + Math.PI*yScale);
+    ctxGraph.lineTo(widthGraph/2, heightGraph/2 + Math.PI*yScale);
+    ctxGraph.stroke();
+
+    //x axes for angle variables
+    if (xGraph != 'graphHistoryTime'){
+        //+-pi on x scale
+        ctxGraph.fillText("\u03C0", widthGraph/2 + Math.PI*xScale, heightGraph/2 + 20);
+        ctxGraph.fillText("-\u03C0", widthGraph/2 - Math.PI*xScale, heightGraph/2 + 20);
+
+        //tick marks for x axes
+        ctxGraph.beginPath();
+        ctxGraph.moveTo(widthGraph/2 - Math.PI*xScale, heightGraph/2 + 5);
+        ctxGraph.lineTo(widthGraph/2 - Math.PI*xScale, heightGraph/2);
+        ctxGraph.moveTo(widthGraph/2 + Math.PI*xScale, heightGraph/2 + 5);
+        ctxGraph.lineTo(widthGraph/2 + Math.PI*xScale, heightGraph/2);
+        ctxGraph.stroke();
+
+        //Loop through graph history and plot
+        for (let i = 0; i <= xData.length; i++) {
+
+            ctxGraph.beginPath();
+
+            let prevY = yData[i];
+            let currY = yData[i+1];
+            let prevX = xData[i];
+            let currX = xData[i+1];
+
+            ctxGraph.moveTo(widthGraph/2 - prevX*xScale, heightGraph / 2 - prevY * yScale);
+            ctxGraph.lineTo(widthGraph/2 - currX*xScale, heightGraph / 2 - currY * yScale);
+            ctxGraph.arc(widthGraph/2 - currX*xScale, heightGraph / 2 - currY * yScale, 1, 0, 2* Math.PI);
+
+            //Check if points on opposite side of graph and makes line invisible
+            if ((Math.abs(prevY - currY) > Math.PI) || (Math.abs(prevX - currX) > Math.PI)){
+                ctxGraph.strokeStyle = "#00000000"; //Invisible if angle greater than 2PI
+            }else{
+                ctxGraph.strokeStyle = "#FF0000";  // Red for angle th1
+            };
+            ctxGraph.stroke();
+        }
+    } else {
+
+        // x-axis labels and tick marks
+        for (let i = 0; i <= numXTimePoints; i++){
+            let xPos = i * (paddedWidthGraph/numXTimePoints);
+            let time = xData[Math.floor(i*maxGraphPoints/numXTimePoints)]/100;
+            if (time == undefined) {time = 100;}
+            time = time.toFixed(2);
+            ctxGraph.fillText(time, xPos, heightGraph/2 + 30);
+
+            ctxGraph.beginPath();
+            ctxGraph.moveTo(xPos, heightGraph/2);
+            ctxGraph.lineTo(xPos, heightGraph/2 + 10);
+            ctxGraph.stroke();
+        }
+
+        let pixelPerDataPoint = paddedWidthGraph / graphHistoryTh1.length;
+        for (let i = 1; i < graphHistoryTh1.length; i++){
+
+            ctxGraph.beginPath();
+
+            let prevY = yData[i-1];
+            let currY = yData[i];
+
+            ctxGraph.moveTo((i - 1) * pixelPerDataPoint, heightGraph / 2 - prevY * yScale);
+            ctxGraph.lineTo(i * pixelPerDataPoint, heightGraph / 2 - currY * yScale);
+
+            if (Math.abs(prevY - currY) > Math.PI){
+                ctxGraph.strokeStyle = "#00000000"; //Invisible if angle greater than 2PI
+            }else{
+                ctxGraph.strokeStyle = "#FF0000";  // Red for angle th1
+            }
+            
+            ctxGraph.stroke();
+    
+        }
+
+    }
+
+    // Draws circle around closest point clicked on and shows the values of the point
+    if (drawPoint && pauseCheck.checked == true) {
+        let closestCoords = closestPoint.point;
+        ctxGraph.beginPath();
+        ctxGraph.arc(widthGraph/2 - closestCoords[0]*xScale, heightGraph / 2 - closestCoords[1] * yScale, 10, 0, 2* Math.PI);
+        ctxGraph.fillText(`${closestCoords[0].toFixed(2)}, ${closestCoords[1].toFixed(2)}`, widthGraph/2 - closestCoords[0]*xScale + 10, heightGraph / 2 - closestCoords[1] * yScale - 10);
+        ctxGraph.stroke();
+    }
+
+}
+\end{lstlisting}
+
+
+
+\subsubsection{package.json}
+This is the JSON that has the information about the whole project. It stores all of the dependencies and their versions to keep version control consistent. Dependencies are downloaded to the server that runs the webpage.
+\paragraph{Code:}
+\begin{lstlisting}
+{
+  "name": "physteach",
+  "version": "1.0.0",
+  "description": "Physics Teach Aid",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Makelberge",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0",
+    "pug": "^3.0.2"
+  },
+  "keywords": []
+}
+
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Testing}
+
+\newpage
+\section{Evaluation}
+
+\newpage
+\begin{thebibliography}{999}
+\bibitem{aboutphet}
+  Kathy Perkins,
+  2023,
+  \emph{About PhET},
+  accessed 31 May 2023,
+  \url{https://phet.colorado.edu/en/about}
+  
+\bibitem{aboutphyslab}
+  Erik Neumann,
+  April 2001,
+  \emph{About the Author},
+  accessed 31 May 2023,
+  \url{https://www.myphysicslab.com/index-en.html}
+
+\bibitem{openSourcePhysLab}
+  Erik Neumann,
+  April 2001,
+  \emph{Open Source Software},
+  accessed 31 May 2023,
+  \url{https://www.myphysicslab.com/index-en.html}
+
+\bibitem{nbody}
+  Wikipedia,
+  12 August 2023,
+  \emph{Newton's law of universal gravitation},
+  accessed 14 August 2023,
+  \url{https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation}
+
+\bibitem{scienceworld}
+  Diego Assencio,
+  38 February 2014,
+  \emph{The double pendulum: Lagrangian formulation},
+  accessed 19 August 2023,
+  \url{https://diego.assencio.com/?index=1500c66ae7ab27bb0106467c68feebc6} 
+
+\bibitem{eulerMethod}
+    Wikipedia,
+    1st September 2023,
+    \emph{Euler method},
+    accessed 15 September 2023,
+    \url{https://en.wikipedia.org/wiki/Euler_method}
+
+\bibitem{rk4Method}
+    Wikipedia,
+    15th August 2023,
+    \emph{Runge-Kutta methods},
+    accessed 15 September 2023,
+    \url{https://en.wikipedia.org/wiki/Runge–Kutta_methods}
+
+\end{thebibliography}
+\end{document}
