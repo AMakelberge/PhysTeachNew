@@ -42,7 +42,7 @@ To do:
 
 - [X] ~~*Fix the energy bars so energy is actually correct*~~ [2024-02-02]
 
-- [ ] Make the page look nice with proper css
+- [X] ~~*Make the page look nice with proper css*~~ [2024-02-28]
 
 - [X] ~~*Add ability to click and drag the pendulum and move it around*~~ [2024-01-29]
     - https://www.youtube.com/watch?v=7PYvx8u_9Sk 
@@ -56,31 +56,3 @@ To do:
     - [X] ~~*Differentials/Maths*~~ [2023-12-20]
     - [X] ~~*Graph*~~ [2023-12-20]
     - [X] ~~*Main running*~~ [2023-12-20]
-
-Stuff for the n-body problem page:
-
-- [ ] Buttons to pause the simulation
-
-- [ ] Click on the screen and it gives you the info of the closest planet
-    - [ ] Change the variable of the planet from this screen
-
-- [ ] Drag and drop a new planet onto the screen and give it initial value
-
-- [ ] Have some interesting presets
-    - [ ] Comet between 2 stars
-    - [ ] Binary system
-    - [ ] Earth and Moon
-    - [ ] Sun and Earth
-    - [ ] Sun, Earth, and Moon
-    - [ ] Black holes, getting sucked into it
-    - [ ] A near miss of an asteroid hitting earth
-
-- [ ] Click on a planet and let you move it around
-
-- [ ] Make all the files separated and clean
-
-- [ ] Add paths that you can toggle on and off of where the planets have been
-
-- [ ] Make the OOP proper with getters and setters
-
-- [ ] Be able to delete objects
