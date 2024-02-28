@@ -61,30 +61,41 @@ Latex:
 
 Analysis:
 - [ ] Talk about what it wont/can't do but ideas for the future
+    - [X] ~~*Add empty to latex*~~ [2024-02-28]
     - [ ] Confirm with Marsh whether this is actually a good idea
 - [ ] Data flow diagram
-- [ ] Talk about what libraries I'll be using
-    - [ ] Talk about how routing and client-server is too complex so import it
+    - [X] ~~*Add empty to latex*~~ [2024-02-28]
 - [ ] IPSO (Input Process Storage Output) diagram
+    - [X] ~~*Add empty to latex*~~ [2024-02-28]
     - [ ] For a simple IPSO (Input Process Storage Output) diagram, just use a 2x2 table and label each one. Then add an overview of all inputs, processes, data that needs to be stored and outputs.
-- [ ] Basic hardware and software that is needed
-- [ ] Talk about doing all the drawing by hand
+- [X] ~~*Basic hardware and software that is needed*~~ [2024-02-28]
+    - [X] ~~*Add empty to latex*~~ [2024-02-28]
 
 Design:
+- [ ] Talk about what libraries I'll be using
+    - [X] ~~*Add empty to latex*~~ [2024-02-28]
+    - [ ] Talk about how routing and client-server is too complex so import it
 - [ ] Another more detailed data flow diagram
+    - [X] ~~*Add empty to latex*~~ [2024-02-28]
 - [ ] Flow chart of how user navigates throughout system
+    - [X] ~~*Add empty to latex*~~ [2024-02-28]
 - [ ] File structure
+    - [X] ~~*Add empty to latex*~~ [2024-02-28]
 - [ ] Design what each piece of GUI will look like and display it
+    - [X] ~~*Add empty to latex*~~ [2024-02-28]
 - [ ] Rename data structures to data dictionary
+    - [X] ~~*Add empty to latex*~~ [2024-02-28]
     - [ ] Each variable
     - [ ] Its data type
     - [ ] Its function
 - [ ] Data structures
+    - [X] ~~*Add empty to latex*~~ [2024-02-28]
     - [ ] Talk about every single data structure used
     - [ ] How is works
     - [ ] Where to find it
     - [ ] What is does
 - [ ] Important algorithms
+    - [X] ~~*Add empty to latex*~~ [2024-02-28]
     - [ ] Write algorithms for drawing the stuff to the screen
 
 Coding:
