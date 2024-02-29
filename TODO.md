@@ -62,12 +62,16 @@ Latex:
 Analysis:
 - [ ] Talk about what it wont/can't do but ideas for the future
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
-    - [ ] Confirm with Marsh whether this is actually a good idea
+    - [X] ~~*Confirm with Marsh whether this is actually a good idea*~~ [2024-02-29]
+    - [ ] Fully define scope of what I am going to do
+    - [ ] Look at what's already been done and decide what to do and what not to do. Look at myPhysicsLab
 - [ ] Data flow diagram
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
+    - [ ] Repurpose the Client-Server-Database diagram
 - [ ] IPSO (Input Process Storage Output) diagram
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
     - [ ] For a simple IPSO (Input Process Storage Output) diagram, just use a 2x2 table and label each one. Then add an overview of all inputs, processes, data that needs to be stored and outputs.
+    - [ ] Adds an IPSO table for every process that gets done make a table and write it
 - [X] ~~*Basic hardware and software that is needed*~~ [2024-02-28]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
 
