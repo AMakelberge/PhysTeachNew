@@ -65,13 +65,13 @@ Analysis:
     - [X] ~~*Confirm with Marsh whether this is actually a good idea*~~ [2024-02-29]
     - [ ] Fully define scope of what I am going to do
     - [ ] Look at what's already been done and decide what to do and what not to do. Look at myPhysicsLab
-- [ ] Data flow diagram
+- [X] ~~*Data flow diagram*~~ [2024-03-01]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
-    - [ ] Repurpose the Client-Server-Database diagram
-- [ ] IPSO (Input Process Storage Output) diagram
+    - [X] ~~*Repurpose the Client-Server-Database diagram*~~ [2024-03-01]
+- [X] ~~*IPSO (Input Process Storage Output) diagram*~~ [2024-03-01]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
-    - [ ] For a simple IPSO (Input Process Storage Output) diagram, just use a 2x2 table and label each one. Then add an overview of all inputs, processes, data that needs to be stored and outputs.
-    - [ ] Adds an IPSO table for every process that gets done make a table and write it
+    - [X] ~~*For a simple IPSO (Input Process Storage Output) diagram, just use a 2x2 table and label each one. Then add an overview of all inputs, processes, data that needs to be stored and outputs.*~~ [2024-03-01]
+    - [X] ~~*Adds an IPSO table for every process that gets done make a table and write it*~~ [2024-03-01]
 - [X] ~~*Basic hardware and software that is needed*~~ [2024-02-28]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
 
