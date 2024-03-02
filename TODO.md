@@ -60,11 +60,12 @@ To do:
 Latex:
 
 Analysis:
-- [ ] Talk about what it wont/can't do but ideas for the future
+- [X] ~~*Update the questionnaire analysis to be about double pendulum*~~ [2024-03-02]
+- [X] ~~*Talk about what it wont/can't do but ideas for the future*~~ [2024-03-02]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
     - [X] ~~*Confirm with Marsh whether this is actually a good idea*~~ [2024-02-29]
-    - [ ] Fully define scope of what I am going to do
-    - [ ] Look at what's already been done and decide what to do and what not to do. Look at myPhysicsLab
+    - [X] ~~*Fully define scope of what I am going to do*~~ [2024-03-02]
+    - [X] ~~*Look at what's already been done and decide what to do and what not to do. Look at myPhysicsLab*~~ [2024-03-02]
 - [X] ~~*Data flow diagram*~~ [2024-03-01]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
     - [X] ~~*Repurpose the Client-Server-Database diagram*~~ [2024-03-01]
@@ -91,7 +92,8 @@ Design:
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
     - [ ] Each variable
     - [ ] Its data type
-    - [ ] Its function
+    - [ ] Its validation
+    - [ ] Sample data
 - [ ] Data structures
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
     - [ ] Talk about every single data structure used
