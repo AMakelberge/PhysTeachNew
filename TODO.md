@@ -77,14 +77,14 @@ Analysis:
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
 
 Design:
-- [ ] Talk about what libraries I'll be using
+- [X] ~~*Talk about what libraries I'll be using*~~ [2024-03-05]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
-    - [ ] Talk about how routing and client-server is too complex so import it
-- [ ] Another more detailed data flow diagram
+    - [X] ~~*Talk about how routing and client-server is too complex so import it*~~ [2024-03-05]
+- [X] ~~*Another more detailed data flow diagram*~~ [2024-03-04]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
 - [ ] Flow chart of how user navigates throughout system
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
-- [ ] File structure
+- [X] ~~*File structure*~~ [2024-03-04]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
 - [ ] Design what each piece of GUI will look like and display it
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
