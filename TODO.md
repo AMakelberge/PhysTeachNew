@@ -88,21 +88,21 @@ Design:
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
 - [ ] Design what each piece of GUI will look like and display it
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
-- [ ] Rename data structures to data dictionary
+- [X] ~~*Rename data structures to data dictionary*~~ [2024-03-05]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
-    - [ ] Each variable
-    - [ ] Its data type
-    - [ ] Its validation
-    - [ ] Sample data
+    - [X] ~~*Each variable*~~ [2024-03-05]
+    - [X] ~~*Its data type*~~ [2024-03-05]
+    - [X] ~~*Its validation*~~ [2024-03-05]
+    - [X] ~~*Sample data*~~ [2024-03-05]
 - [ ] Data structures
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
     - [ ] Talk about every single data structure used
     - [ ] How is works
     - [ ] Where to find it
     - [ ] What is does
-- [ ] Important algorithms
+- [X] ~~*Important algorithms*~~ [2024-03-05]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
-    - [ ] Write algorithms for drawing the stuff to the screen
+    - [X] ~~*Write algorithms for drawing the stuff to the screen*~~ [2024-03-05]
 
 Coding:
 - [ ] Add literally any technique used
