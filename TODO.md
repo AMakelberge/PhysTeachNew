@@ -86,7 +86,7 @@ Design:
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
 - [X] ~~*File structure*~~ [2024-03-04]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
-- [ ] Design what each piece of GUI will look like and display it
+- [X] ~~*Design what each piece of GUI will look like and display it*~~ [2024-03-06]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
 - [X] ~~*Rename data structures to data dictionary*~~ [2024-03-05]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
