@@ -82,7 +82,7 @@ Design:
     - [X] ~~*Talk about how routing and client-server is too complex so import it*~~ [2024-03-05]
 - [X] ~~*Another more detailed data flow diagram*~~ [2024-03-04]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
-- [ ] Flow chart of how user navigates throughout system
+- [X] ~~*Flow chart of how user navigates throughout system*~~ [2024-03-06]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
 - [X] ~~*File structure*~~ [2024-03-04]
     - [X] ~~*Add empty to latex*~~ [2024-02-28]
