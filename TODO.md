@@ -99,11 +99,11 @@ Design:
     - [X] ~~*Write algorithms for drawing the stuff to the screen*~~ [2024-03-05]
 
 Coding:
-- [ ] Add literally any technique used
-- [ ] Double check the comments to make sure they are needed but not unneccessary
-- [ ] Do the defensive programming for inputting the values
-- [ ] Maybe rewrite code to make it properly nice
-- [ ] Appendix at the bottom that links to libraries and their descriptions
+- [X] ~~*Add literally any technique used*~~ [2024-03-06]
+- [X] ~~*Double check the comments to make sure they are needed but not unneccessary*~~ [2024-03-06]
+- [X] ~~*Do the defensive programming for inputting the values*~~ [2024-03-06]
+- [X] ~~*Maybe rewrite code to make it properly nice*~~ [2024-03-06]
+- [X] ~~*Appendix at the bottom that links to libraries and their descriptions*~~ [2024-03-06]
 
 Testing:
 Do this once the other sections are done.
