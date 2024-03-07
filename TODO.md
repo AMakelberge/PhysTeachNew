@@ -99,6 +99,9 @@ Design:
     - [X] ~~*Write algorithms for drawing the stuff to the screen*~~ [2024-03-05]
 
 Coding:
+- [ ] Correct the page numbers for everything
+- [ ] Add a code content page
+    - [ ] Explain what each function does and where it goes
 - [X] ~~*Add literally any technique used*~~ [2024-03-06]
 - [X] ~~*Double check the comments to make sure they are needed but not unneccessary*~~ [2024-03-06]
 - [X] ~~*Do the defensive programming for inputting the values*~~ [2024-03-06]
