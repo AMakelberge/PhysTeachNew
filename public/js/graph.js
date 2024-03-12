@@ -61,41 +61,33 @@ export function drawClosestPoint(canvasGraph, event, xGraph, yGraph, widthGraph,
     const xClick = event.clientX - rect.left;
     const yClick = event.clientY - rect.top;
 
-    // Calculate padding to check if click on graph
-    let paddedHeightGraph = heightGraph * (1 - padding/100);
-    let paddedWidthGraph = widthGraph * (1 - padding/100); 
-
     //Scaling
-    let yScale = paddedHeightGraph / (2 * Math.PI);
-    let xScale = paddedWidthGraph / (2 * Math.PI);
-
-    // Works if click in graph
-    if ((xClick > (widthGraph-paddedWidthGraph)/2) && (xClick < paddedWidthGraph + (widthGraph-paddedWidthGraph)/2) && 
-    (yClick > (heightGraph - paddedHeightGraph)/2) && (yClick < paddedHeightGraph + (heightGraph-paddedHeightGraph)/2)){
-            
-        // Get xy data
-        let xData = eval(xGraph);
-        let yData = eval(yGraph);
-
-        if (xGraph != 'graphHistoryTime'){
-            let xPoint = -(xClick / xScale - Math.PI);
-            let yPoint = -(yClick / yScale - Math.PI);
-
-            let distances = [];
-            for (let i = 0; i < xData.length; i++){
-                let distance = Math.sqrt((xPoint-xData[i])**2 + (yPoint-yData[i])**2);
-                distances.push({'distance': distance, 'point': [xData[i-1], yData[i-1]]});
-            }
+    let yScale = heightGraph / (2 * Math.PI);
+    let xScale = widthGraph / (2 * Math.PI);
         
-            let closest = minBy(distances, 'distance')
+    // Get xy data
+    let xData = eval(xGraph);
+    let yData = eval(yGraph);
 
-            closestPoint = closest;
+    if (xGraph != 'graphHistoryTime'){
+        let xPoint = -(xClick / xScale - Math.PI);
+        let yPoint = -(yClick / yScale - Math.PI);
 
-            drawPoint = true;
-            
-    }
+        let distances = [];
+        for (let i = 0; i < xData.length; i++){
+            let distance = Math.sqrt((xPoint-xData[i])**2 + (yPoint-yData[i])**2);
+            distances.push({'distance': distance, 'point': [xData[i], yData[i]]});
+        }
+    
+        let closest = minBy(distances, 'distance')
 
-    }
+        closestPoint = closest;
+
+        drawPoint = true;
+        
+    };
+
+
 
 
 }

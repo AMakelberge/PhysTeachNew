@@ -98,6 +98,7 @@ function start(){
     canvasGraph.addEventListener("click", function(event){
         if (pauseCheck.checked == true){
             drawClosestPoint(canvasGraph, event, xGraph, yGraph, widthGraph, heightGraph);
+
         } 
     });
 
