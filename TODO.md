@@ -114,16 +114,8 @@ https://docs.google.com/document/d/1J3559gahN2d9Eh4eJMbPT-6jB7lHTCJa-twuzZWgQS4/
 
 
 Feedback from Marsh:
-Analysis doesn't flow very much (explain why some stuff is there)
-Make figures more obvious that they are figures
-Why do you have KNN, Energybars
-equation 36 doesnt exist in DP explanation
-Nothing about potential solution (needs more of an idea of what it's gonna look like)
-Copy overall GUI into analysis (make it look like you've expanded on it)
-In analysis make potential solution (need a database to connect)
 In analysis say why you are using MongoDB
 GUI objectives are unclear and hard to quantify (Marsh will come back)
-State modelling assumption behind equations. (point mass, no friction)
 
 Design:
 Explain the algorithms eg from RK4, Euler (these are my equations from analysis)
