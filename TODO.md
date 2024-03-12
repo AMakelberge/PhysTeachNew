@@ -100,8 +100,6 @@ Design:
 
 Coding:
 - [ ] Correct the page numbers for everything
-- [ ] Add a code content page
-    - [ ] Explain what each function does and where it goes
 - [X] ~~*Add literally any technique used*~~ [2024-03-06]
 - [X] ~~*Double check the comments to make sure they are needed but not unneccessary*~~ [2024-03-06]
 - [X] ~~*Do the defensive programming for inputting the values*~~ [2024-03-06]
@@ -112,3 +110,27 @@ Testing:
 Do this once the other sections are done.
 Check the word doc for what you need to do:
 https://docs.google.com/document/d/1J3559gahN2d9Eh4eJMbPT-6jB7lHTCJa-twuzZWgQS4/edit
+
+
+
+Feedback from Marsh:
+Analysis doesn't flow very much (explain why some stuff is there)
+Make figures more obvious that they are figures
+Why do you have KNN, Energybars
+equation 36 doesnt exist in DP explanation
+Nothing about potential solution (needs more of an idea of what it's gonna look like)
+Copy overall GUI into analysis (make it look like you've expanded on it)
+In analysis make potential solution (need a database to connect)
+In analysis say why you are using MongoDB
+GUI objectives are unclear and hard to quantify (Marsh will come back)
+State modelling assumption behind equations. (point mass, no friction)
+
+Design:
+Explain the algorithms eg from RK4, Euler (these are my equations from analysis)
+Algorithms - when just lifting equation from analysis just number what equation you have done and say what it's actually doing
+
+
+
+Testing:
+For differential: 
+For RK4/Euler: Use a really easy equation that you can solve and compare it. graph them and show that.

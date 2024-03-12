@@ -51,6 +51,27 @@ function start(){
     let om2 = 0;
     let maxLabel = getMaxEnergy(th1, th2, om1, om2);
 
+    //Changes maxLabel when a slider is changed
+    gravSlider.addEventListener('change', function(e){
+        maxLabel = getMaxEnergy(th1, th2, om1, om2);
+    });
+    m1Slider.addEventListener('change', function(e){
+        maxLabel = getMaxEnergy(th1, th2, om1, om2);
+    });
+    m2Slider.addEventListener('change', function(e){
+        maxLabel = getMaxEnergy(th1, th2, om1, om2);
+    });
+    l1Slider.addEventListener('change', function(e){
+        maxLabel = getMaxEnergy(th1, th2, om1, om2);
+    });
+    l2Slider.addEventListener('change', function(e){
+        maxLabel = getMaxEnergy(th1, th2, om1, om2);
+    });
+    hSlider.addEventListener('change', function(e){
+        maxLabel = getMaxEnergy(th1, th2, om1, om2);
+    });
+
+
     //Canvas setup for pendulum
     const desiredFPS = 60;
     let canvasPendulum = document.querySelector('#canvasPendulum');
@@ -60,7 +81,7 @@ function start(){
 
     // Changes position of pendulum when you click on it
     canvasPendulum.addEventListener("click", function(event){
-        [th1, th2, om1, om2] = setPendulumPosition(canvasPendulum, event, om1, om2);
+        [th1, th2, om1, om2] = setPendulumPosition(canvasPendulum, event, th1, th2, om1, om2);
         maxLabel = getMaxEnergy(th1, th2, om1, om2);
 
     })
@@ -98,6 +119,7 @@ function start(){
         th2 = 30 * (Math.PI / 180);
         om1 = 0;
         om2 = 0;
+        maxLabel = getMaxEnergy(th1, th2, om1, om2);
         resetHistories()
         resetPendHistories()
         }

@@ -32,31 +32,33 @@ export function updatePosHistories(x,y){
     }
 }
 
-//Differential equation for this model
-function differential(th1, th2, om1, om2) {
-    const { g, m1, m2, l1, l2 } = getParams();
-    const delta = th2 - th1;  // Difference in angles
-    const den1 = (m1 + m2) * l1 - m2 * l1 * Math.cos(delta) * Math.cos(delta);
-    const den2 = (l2 / l1) * den1;
+function differential(th1, th2, om1, om2){
+    
+    const {g, m1, m2, l1, l2} = getParams()
 
-    // Computing the derivatives
-    const dotom1 = ((m2 * l2 * om2 * om2 * Math.sin(delta) * Math.cos(delta)
-        + m2 * g * Math.sin(th2) * Math.cos(delta)
-        + m2 * l2 * om2 * om2 * Math.sin(delta)
-        - (m1 + m2) * g * Math.sin(th1))
-        / den1);
+    function a1(th1, th2){
+        return (l2/l1)*(m2/(m1+m2))*Math.cos(th1-th2);
+    }
+    function a2(th1, th2){
+        return (l1/l2)*Math.cos(th1-th2);
+    }
+    function f1(th1, th2, om1, om2){
+        return -(l2/l1)*(m2/(m1+m2))*(om2**2)*Math.sin(th1-th2) - (g/l1)*Math.sin(th1);
+    }
+    function f2(th1, th2, om1, om2){
+        return (l1/l2)*(om1**2)*Math.sin(th1-th2) - (g/l2)*Math.sin(th2);
+    }
 
-    const dotom2 = ((-l1 / l2) * om1 * om1 * Math.sin(delta) * Math.cos(delta)
-        + (m1 + m2) * g * Math.sin(th1) * Math.cos(delta)
-        - (m1 + m2) * l1 * om1 * om1 * Math.sin(delta)
-        - (m1 + m2) * g * Math.sin(th2))
-        / den2;
+    let dotom1 = (f1(th1, th2, om1, om2) - a1(th1, th2)*f2(th1, th2, om1, om2))/(1-a1(th1,th2)*a2(th1,th2));
+    let dotom2 = (f2(th1, th2, om1, om2) - a2(th1, th2)*f1(th1, th2, om1, om2))/(1-a1(th1,th2)*a2(th1,th2));
 
     return [om1, om2, dotom1, dotom2];
+
 }
 
 //Integration method
 function Integration(method, h, th1, th2, om1, om2) {
+    
     if (method === 'RK4'){
         let [k1_th1, k1_th2, k1_om1, k1_om2] = differential(th1, th2, om1, om2);
         let [k2_th1, k2_th2, k2_om1, k2_om2] = differential(
@@ -157,9 +159,9 @@ function findCircleIntersections(x1,y1,r1, x2,y2,r2) {
     const d = Math.hypot(x2-x1, y2-y1);
   
     if ((d >= (r1 + r2)) || (d <= Math.abs(r1 - r2))) {
-      return false; // No intersection
+        return false; // No intersection
     }
-  
+
     const theta = Math.atan2(y2 - y1, x2 - x1);
     const a = (r1 * r1 - r2 * r2 + d * d) / (2 * d);
     const h = Math.sqrt(r1 * r1 - a * a);
@@ -191,11 +193,10 @@ export function setPendulumPosition(canvas, event, th1, th2, om1, om2){
     if (point != false){
         th1 = Math.atan2(point[1]-origY, point[0]-origX);
         th2 = Math.atan2(yClick-point[1], xClick-point[0]);
-
         return [th1, th2, 0, 0];
-    }
-
+    } else {
     return [th1,th2, om1, om2];
+    };
 }
 
 // Returns sum of kinetic energies of both pendulums
