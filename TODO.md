@@ -115,6 +115,8 @@ https://docs.google.com/document/d/1J3559gahN2d9Eh4eJMbPT-6jB7lHTCJa-twuzZWgQS4/
 
 Feedback from Marsh:
 GUI objectives are unclear and hard to quantify (Marsh will come back)
+have a gui, make it controlled by a mouse
+saying its clean is a waste of an objective
 
 
 Testing:
