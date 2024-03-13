@@ -116,11 +116,6 @@ https://docs.google.com/document/d/1J3559gahN2d9Eh4eJMbPT-6jB7lHTCJa-twuzZWgQS4/
 Feedback from Marsh:
 GUI objectives are unclear and hard to quantify (Marsh will come back)
 
-Design:
-Explain the algorithms eg from RK4, Euler (these are my equations from analysis)
-Algorithms - when just lifting equation from analysis just number what equation you have done and say what it's actually doing
-
-
 
 Testing:
 For differential: 
