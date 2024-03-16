@@ -48,6 +48,7 @@ export function resetHistories(){
     graphHistoryTh2 = [];
     graphHistoryOm1 = [];
     graphHistoryOm2 = [];
+    graphHistoryTime = [];
 }
 
 // Gets the smallest value in an array of dictionaries by a certain key
@@ -171,7 +172,7 @@ export function drawGraph(ctxGraph, xGraph, yGraph, widthGraph, heightGraph, pau
         // x-axis labels and tick marks
         for (let i = 0; i <= numXTimePoints; i++){
             let xPos = i * (paddedWidthGraph/numXTimePoints);
-            let time = xData[Math.floor(i*maxGraphPoints/numXTimePoints)]/100;
+            let time = (graphHistoryTime[0]+(i * (graphHistoryTime.slice(-1)-graphHistoryTime[0]))/(numXTimePoints))/60;
             if (time == undefined) {time = 100;}
             time = time.toFixed(2);
             ctxGraph.fillText(time, xPos, heightGraph/2 + 30);

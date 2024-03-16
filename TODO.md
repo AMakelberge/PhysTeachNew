@@ -110,15 +110,3 @@ Testing:
 Do this once the other sections are done.
 Check the word doc for what you need to do:
 https://docs.google.com/document/d/1J3559gahN2d9Eh4eJMbPT-6jB7lHTCJa-twuzZWgQS4/edit
-
-
-
-Feedback from Marsh:
-GUI objectives are unclear and hard to quantify (Marsh will come back)
-have a gui, make it controlled by a mouse
-saying its clean is a waste of an objective
-
-
-Testing:
-For differential: 
-For RK4/Euler: Use a really easy equation that you can solve and compare it. graph them and show that.
