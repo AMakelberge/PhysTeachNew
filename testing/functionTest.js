@@ -32,4 +32,4 @@ function getPotentialEnergy(th1, th2){
     return PE;
 }
 
-console.log(getKineticEnergy(0.24,0.45));
+console.log(getPotentialEnergy(Math.PI/2, Math.PI/2));

@@ -110,3 +110,7 @@ Testing:
 Do this once the other sections are done.
 Check the word doc for what you need to do:
 https://docs.google.com/document/d/1J3559gahN2d9Eh4eJMbPT-6jB7lHTCJa-twuzZWgQS4/edit
+
+
+
+during testing at the start of making the project there was no defensive programming so you could break the server, very easily, but i then fixed it. Add proof of it breaking.

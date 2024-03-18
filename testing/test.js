@@ -50,7 +50,7 @@ function solution(t, A=1){
     return A*Math.exp(t);
 }
 
-const h = 0.01;
+const h = 0.1;
 const finalVal = 10;
 const steps = finalVal/h;
 let x=1, y=1, z=1, w=1;
