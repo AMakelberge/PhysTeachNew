@@ -21,6 +21,8 @@ function getKineticEnergy(om1, om2){
     return KE;
 }
 
+console.log(getKineticEnergy(Math.PI, Math.PI))
+
 function getPotentialEnergy(th1, th2){
     const { g, m1, m2, l1, l2 } = getParams();
 
@@ -32,4 +34,27 @@ function getPotentialEnergy(th1, th2){
     return PE;
 }
 
-console.log(getPotentialEnergy(Math.PI/2, Math.PI/2));
+function findCircleIntersections(x1,y1,r1, x2,y2,r2) {
+
+    const d = Math.hypot(x2-x1, y2-y1);
+  
+    if ((d > (r1 + r2)) || (d < Math.abs(r1 - r2))) {
+        return false; // No intersection
+    }
+
+    const theta = Math.atan2(y2 - y1, x2 - x1);
+    const a = (r1 * r1 - r2 * r2 + d * d) / (2 * d);
+    const h = Math.sqrt(r1 * r1 - a * a);
+  
+    const x3 = x1 + a * Math.cos(theta);
+    const y3 = y1 + a * Math.sin(theta);
+  
+    const x4 = x3 + h * Math.cos(theta + Math.PI / 2);
+    const y4 = y3 + h * Math.sin(theta + Math.PI / 2);
+  
+    // Arbitrarily returns to positive value and doesn't calculate other intersection
+    // As it is not needed
+    return [x4, y4];
+  }
+
+console.log(findCircleIntersections(0,0,1,2,0,2))
