@@ -115,3 +115,5 @@ Link to the testing video:
 https://youtu.be/wpPRPoB_Hpc
 
 during testing at the start of making the project there was no defensive programming so you could break the server, very easily, but i then fixed it. Add proof of it breaking.
+
+make a list of questions from Dr Marlow to answer
